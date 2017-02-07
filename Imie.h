@@ -1,6 +1,5 @@
 /*
- * Imię, poza nazwą gracza reprezentuje jego kolor (drużynę),
- * jak i również teksty będące np. rekacją na wygraną konretnego gracza.
+ * Imię - ciąg znaków plus informacja o płci gracza.
  */
 
 #ifndef IMIE_H_
@@ -10,8 +9,27 @@
 #include <SFML/Graphics.hpp>
 
 enum jakieImie {
-	BRAK, MAKS, SZYMON, JUREK, WOJTEK, MACIEK, WERA,
+	BRAK,
+	MAKS,
+	SZYMON,
+	JUREK,
+	WOJTEK,
+	MACIEK,
+	WERA,
+	STYKU,
+	TOSIA,
+	PIOTREK,
+	SAMANTA,
+	BIALY,
+	KASIA,
+	MATEUSZ,
+	SUM,
+	DANIELA,
+	MIKSER,
+	EDDIE,
+	DOMSON,
 };
+
 enum jakaPlec {
 	FACET, BABKA
 };
@@ -23,7 +41,7 @@ public:
 
 	Imie(jakieImie jakie);
 
-	char * get_c_str();
+	char *get_c_str();
 	jakaPlec getPlec();
 
 	// Przełowanie operatora przypisania dla imion

@@ -1,7 +1,7 @@
-/* Klasa dla wszystkich obiektów kontrolujących teren. Zbudowana
- * z poziomych zestawów płytek np. 8na1 albo 20na4. Może być
- * przenikalna, bądź nie i wówczas natępują kolizja od góry.
- *
+/*
+ * Teren czyli wszystkie płytki i windy, czyli coś co na czym jaszczurka
+ * będzie sobie spoczywać. Ma wymiar x/y elementów. Może być
+ * przenikalna, bądź nie i wówczas natępują kolizja od góry terenu.
  */
 
 #ifndef TEREN_H_
@@ -9,31 +9,30 @@
 
 #include "Obiekt.h"
 
-class Game;
-
 enum RodzajTerenu {
 	PLYTKA, BLOK, WINDA,
 };
 
 class Teren: public Obiekt {
 public:
-	~Teren(void);
-
 	// Konstruktor z częściami terenu wymagającymi innego sprite'u z lewej/prawej
 	Teren(RodzajTerenu rodzaj, int dlugosc, int wysokosc, int x, int y,
 			int specjalne = 0);
 
 	// Konstruktor dla windy, należy podać prędkość i punkty A, B
-	Teren(RodzajTerenu rodzaj, int dlugosc, int ax, int ay,
-			int bx, int by, float vel);
+	Teren(RodzajTerenu rodzaj, int dlugosc, int ax, int ay, int bx, int by,
+			float vel);
+
+	~Teren(void);
 
 	// Aktualizacja procesów związanych z terenm
 	void update(int mineloCzasu);
 
+	// Pozycja terenu w tej klatce i poprzedniej
 	sf::Vector2f getPosition(unsigned int nr = 0) const;
 	sf::Vector2f getPrevPosition(unsigned int nr = 0) const;
 
-	// Przeładowanie obszaru, który jest terenem
+	// Prostokąt, w którym jest teren teraz, jak i klatkę temu
 	sf::FloatRect getGlobalBounds(unsigned int nr = 0) const;
 	sf::FloatRect getPrevGlobalBounds(unsigned int nr = 0) const;
 
@@ -42,8 +41,7 @@ public:
 
 private:
 	//************* DANE DOTYCZĄCE WYGLĄDU I ANIMACJI *************
-
-	// Tekstury postaci załadowane z dysku
+	// Tekstury terenu w dla różnych krawędzi
 	sf::Texture teren_texture;
 	sf::Texture teren_textureL;
 	sf::Texture teren_textureP;
@@ -59,7 +57,7 @@ private:
 	sf::Sprite spriteSP;
 
 	//*********************** CECHY FIZYCZNE ***********************
-	// Ilość poziomych kawałków, z których składa się teren
+	// Ilość kawałków w poziomie i pionie, z których składa się teren
 	int dlugosc, wysokosc;
 
 	// Czy mozna przechodzić przez niego góra/dół
@@ -71,7 +69,7 @@ private:
 	// Punkty A i B, dotyczą wind
 	sf::Vector2f punktA, punktB;
 
-	//******************* DANE DOTYCZĄCE FIZYKI *******************
+	// ************************ POZOSTAŁE *************************
 	// Poprzednia pozycja
 	sf::Vector2f prevPosition;
 

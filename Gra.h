@@ -8,6 +8,7 @@
 #define GRA_H_
 
 #include <vector>
+#include <string>
 
 #include "Gracz.h"
 #include "Mucha.h"
@@ -31,43 +32,7 @@ public:
 	// Oznacza wyłączenie gry i powrót do menu
 	bool exit;
 private:
-	//************************** OGÓLNE **********************
-	ProgramState *state;
-	int runda;
-
-	//********************* GŁÓWNE PROCEDURY *****************
-	// Aktualizacja procesów związanych z całą grą
-	void update();
-
-	// Wyświetlenie wszystkiego na ekranie
-	void wyswietl();
-
-	// Stoper mierzący czas między kolejnymi klatkami gry
-	sf::Clock delta;
-
-	// Zapisane wartości z powyższego po narysowaniu
-	int mineloCzasu;
-
-	// Stoper mierzący czas od uruchomienia gry aż do startu
-	sf::Clock startTimer;
-
-	//********************** ELEMENTY POBIERANE Z MAPY *********************
-	// Procedura pobrania tych elementów
-	void pobierzMape(Mapa & mapa);
-
-	// Tereny gry
-	std::vector<Teren*> teren;
-
-	// Ściany kamuflujące jaszczurki
-	std::vector<Scianka*> scianka;
-
-	// 4 Pozycje respawnu
-	std::vector<sf::Vector2f> respPos;
-
-	// Tło mapy
-	sf::Texture tlo_texture;
-
-	//********************** ELEMENTY WYTWARZANE TUTAJ *********************
+	//******************* ELEMENTY GRY *********************
 	// Gracze
 	std::vector<Gracz*> gracz;
 
@@ -96,7 +61,35 @@ private:
 	// Napis RUNDA x, który wjeżdza zawsze na początku
 	sf::Text napisRunda;
 
-	//*************** FUNKCJE DLA OBIEKTÓW GRY ****************
+	// Stoper mierzący czas między kolejnymi klatkami gry
+	sf::Clock delta;
+
+	// Zapisane wartości z powyższego po narysowaniu
+	int mineloCzasu;
+
+	// Stoper mierzący czas od uruchomienia gry aż do startu
+	sf::Clock startTimer;
+
+	void update();
+	void wyswietl();
+
+	// -----------------  POBIERANE Z MAPY -----------------
+	// Procedura pobrania tych elementów
+	void pobierzMape(Mapa & mapa);
+
+	// Tereny gry
+	std::vector<Teren*> teren;
+
+	// Ściany kamuflujące jaszczurki
+	std::vector<Scianka*> scianka;
+
+	// 4 Pozycje respawnu
+	std::vector<sf::Vector2f> respPos;
+
+	// Tło mapy
+	sf::Texture tlo_texture;
+
+	//*************** PROCEDURY DLA OBIEKTÓW GRY ****************
 	// Procedura zarządzająca w całości kamuflażem
 	void updateKamuflaz(Jaszczurka & jaszczurka);
 
@@ -152,7 +145,11 @@ private:
 		}
 	}
 
-	//***************** FUNDAMENTALNE DANE (SFML) *************
+	//***************** DOTYCZY PĘTLI PROGRAMU ****************
+	ProgramState *state;
+	int runda;
+
+	//**************** POTRZEBNE DLA DZIAŁANIA SFML *************
 	sf::RenderWindow *window;
 	sf::Event event;
 };

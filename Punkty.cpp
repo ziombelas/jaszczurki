@@ -1,9 +1,9 @@
 #include "Punkty.h"
 
-Punkty::Punkty(int wynik, TablicaNaWynik * tablicaNaWynik, int x, int y) {
+Punkty::Punkty(int wynik, TablicaNaWynik *tablicaNaWynik, int x, int y) {
 	this->tablicaNaWynik = tablicaNaWynik;
 	this->wynik = wynik;
-//	wynik = 0;
+
 	font.loadFromFile("data/fonts/EncodeSansWide-Black.ttf");
 
 	// Utworzenie napisu +x, gdzie x to liczba punktów

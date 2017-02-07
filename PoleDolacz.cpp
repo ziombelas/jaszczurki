@@ -1,12 +1,13 @@
 #include "PoleDolacz.h"
 
-PoleDolacz::PoleDolacz(int x, int y, Input * input) {
+PoleDolacz::PoleDolacz(int x, int y, Input *input) {
 	this->input = input;
 
-	this->x = x;
-	this->y = y;
-	bok.setSize(sf::Vector2f(350, 800));
-	bok.setPosition(x, y);
+	rect.setSize(sf::Vector2f(350, 800));
+	rect.setPosition(x, y);
+
+//	setSize(sf::Vector2f(350, 800));
+//	setPosition(x, y);
 
 	gotowy = false;
 
@@ -15,13 +16,25 @@ PoleDolacz::PoleDolacz(int x, int y, Input * input) {
 	fontArrows.loadFromFile("data/fonts/TakaoPGothic.ttf");
 	font.loadFromFile("data/fonts/EncodeSansWide-Black.ttf");
 
-	imie[0] = new Imie(BRAK);
-	imie[1] = new Imie(MAKS);
-	imie[2] = new Imie(SZYMON);
-	imie[3] = new Imie(JUREK);
-	imie[4] = new Imie(WOJTEK);
-	imie[5] = new Imie(MACIEK);
-	imie[6] = new Imie(WERA);
+	imie.push_back(new Imie(BRAK));
+	imie.push_back(new Imie(MAKS));
+	imie.push_back(new Imie(SZYMON));
+	imie.push_back(new Imie(JUREK));
+	imie.push_back(new Imie(WOJTEK));
+	imie.push_back(new Imie(MACIEK));
+	imie.push_back(new Imie(WERA));
+	imie.push_back(new Imie(STYKU));
+	imie.push_back(new Imie(TOSIA));
+	imie.push_back(new Imie(PIOTREK));
+	imie.push_back(new Imie(SAMANTA));
+	imie.push_back(new Imie(BIALY));
+	imie.push_back(new Imie(KASIA));
+	imie.push_back(new Imie(MATEUSZ));
+	imie.push_back(new Imie(SUM));
+	imie.push_back(new Imie(DANIELA));
+	imie.push_back(new Imie(MIKSER));
+	imie.push_back(new Imie(EDDIE));
+	imie.push_back(new Imie(DOMSON));
 
 	nr_imiona = 0;
 
@@ -35,7 +48,7 @@ PoleDolacz::PoleDolacz(int x, int y, Input * input) {
 }
 
 PoleDolacz::~PoleDolacz() {
-	for (int i = 0; i < iloscImion; i++)
+	for (unsigned int i = 0; i < imie.size(); i++)
 		delete imie[i];
 }
 
@@ -45,7 +58,7 @@ void PoleDolacz::poprzednieImie() {
 
 	// Przewijanie na koniec listy, gdy wróci się na imię[0] (tekst powitalny)
 	if (nr_imiona <= 0)
-		nr_imiona = iloscImion - 1;
+		nr_imiona = imie.size() - 1;
 }
 
 void PoleDolacz::nastepneImie() {
@@ -53,7 +66,7 @@ void PoleDolacz::nastepneImie() {
 	nr_imiona++;
 
 	// Cofanie na początek listy po przekroczeniu ostatniego imienia
-	if (nr_imiona >= iloscImion)
+	if (nr_imiona >= imie.size())
 		nr_imiona = 1;
 }
 
@@ -70,14 +83,14 @@ bool PoleDolacz::wybranoKolor() {
 }
 
 void PoleDolacz::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-	target.draw(bok);
+	target.draw(rect);
 	target.draw(input->jakPoruszacSprite);
 	//target.draw(imieSprite);
 
 	// Wyświetlenie imienia
 //	target.draw(*imie[nr_imiona]);
 
-	// Narysowanie strzałek do wybierania
+// Narysowanie strzałek do wybierania
 	target.draw(textArrows);
 	target.draw(wyswietlaneImie);
 
@@ -85,9 +98,9 @@ void PoleDolacz::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 
 void PoleDolacz::update() {
 	if (gotowy)
-		bok.setFillColor(sf::Color(225, 235, 255, 255));
+		rect.setFillColor(sf::Color(225, 235, 255, 255));
 	else
-		bok.setFillColor(sf::Color(160, 160, 170, 255));
+		rect.setFillColor(sf::Color(160, 160, 170, 255));
 
 //
 //	imieSprite.setString(imie[nr_imiona]);
@@ -110,6 +123,8 @@ void PoleDolacz::update() {
 		wyswietlaneImie.setColor(sf::Color(255, 0, 150));
 
 	wyswietlaneImie.setPosition(
-			x + 350 / 2 - wyswietlaneImie.getGlobalBounds().width / 2, y + 500);
+			rect.getPosition().x + 350 / 2
+					- wyswietlaneImie.getGlobalBounds().width / 2,
+			rect.getPosition().y + 500);
 
 }

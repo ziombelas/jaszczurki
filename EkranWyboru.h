@@ -1,9 +1,9 @@
 /*
- * Ekran w którym następują dołączenie graczy,
- * TODO pola powinny mieć charakter pojemnika
- * TODO spobony dolaczenia urzadzenia jako osobna klasa, ?
- *
- */
+ * Ekran w którym gracze mogą przyłączać się do gry, reprezentując
+ * jedno z 6 możliwych inputów jako 2 układy klawiatury i 4ry id padów.
+ * Gdy gracze są gotowi wartośc na wskaźniku stanu programu zostaje
+ * ustawiona na początek rozgrywki.
+  */
 
 #ifndef EKRANWYBORU_H_
 #define EKRANWYBORU_H_
@@ -22,11 +22,7 @@ public:
 	// Głowna procedura z pętlą głowną
 	void run();
 private:
-	//************** DOTYCZY PĘTLI PROGRAMU *************
-	bool exit;
-	ProgramState *state;
-
-	//*************** FUNDAMENTALNE DANE ***************
+	//************** ELEMENTY EKRANU WYBORU **************
 	Settings *ustawienia;
 
 	Input *input[6];
@@ -34,15 +30,23 @@ private:
 
 	std::vector<PoleDolacz*> pole;
 
-	//**************** DO WYŚWIETLENIA *****************
+	void update();
+	void wyswietl();
+
+	//*************** DOTYCZY PĘTLI PROGRAMU **************
+	bool exit;
+	ProgramState *state;
+
+	//**************** ELEMENTY GRAFICZNE *****************
+	// Czcionka do tekstu dołączenia
+	sf::Font fontWPolu;
+
 	sf::RectangleShape rectNaGracza[4];
 	sf::Text tekst[4][3];
 
+	//**************** POTRZEBNE DLA DZIAŁANIA SFML *************
 	sf::RenderWindow *window;
 	sf::Event event;
-
-	void update();
-	void draw();
 };
 
 #endif /* EKRANWYBORU_H_ */

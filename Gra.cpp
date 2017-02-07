@@ -1,5 +1,4 @@
 #include "Gra.h"
-#include <string>
 
 Gra::Gra(sf::RenderWindow &window, Settings * ustawienia, ProgramState * state,
 		int runda) {
@@ -13,6 +12,7 @@ Gra::Gra(sf::RenderWindow &window, Settings * ustawienia, ProgramState * state,
 
 	mineloCzasu = 0;
 
+	// Utworzenie tablic na górze erkanu
 	tablicaNaWynik[0] = new TablicaNaWynik(1920 / 4 * 0, 0, sf::Color(5, 5, 5));
 	tablicaNaWynik[1] = new TablicaNaWynik(1920 / 4 * 1, 0,
 			sf::Color(25, 25, 25));
@@ -20,7 +20,7 @@ Gra::Gra(sf::RenderWindow &window, Settings * ustawienia, ProgramState * state,
 	tablicaNaWynik[3] = new TablicaNaWynik(1920 / 4 * 3, 0,
 			sf::Color(25, 25, 25));
 
-	// Pobranie mapy
+	// Pobranie domyślnej mapy
 	Mapa1 mapa1;
 	pobierzMape(mapa1);
 
@@ -29,12 +29,11 @@ Gra::Gra(sf::RenderWindow &window, Settings * ustawienia, ProgramState * state,
 	// Utworzenie postaci graczy
 	for (unsigned int i = 0; i < ustawienia->grajacy.size(); i++) {
 		gracz.push_back(new Gracz(respPos[i], ustawienia->grajacy[i]));
-
 		powiazGraczaZTablica(ustawienia->grajacy[i], tablicaNaWynik[i]);
 	}
 
 	// Stworzenie pierwszej muchy
-	mucha.push_back(new Mucha());
+	mucha.push_back(new Mucha(true));
 
 	// Czcionka dla napisów gry
 	font.loadFromFile("data/fonts/PORKYS.ttf");
@@ -71,7 +70,8 @@ Gra::~Gra() {
 		delete tablicaNaWynik[i];
 
 	for (unsigned int i = 0; i < punkty.size(); i++) {
-		// Dodanie punktów, który nie zdążyły dolecieć przed usunięciem
+		// Dodanie punktów, który nie zdążyły dolecieć zanim Gra się
+		// usunie.
 		if (!punkty[i]->czyDodane)
 			punkty[i]->tablicaNaWynik->pokazywany->zwiekszWynik(
 					punkty[i]->wynik);

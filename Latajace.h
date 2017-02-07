@@ -1,6 +1,6 @@
-/* Latające obiekty, obecnie tylko Mucha. Jedyne cechy
- * jakie są zapisane w tej klasie to minimalna i maksymalna
- * prędkość lotu.
+/* Latające obiekty, obecnie tylko Mucha. Klasa ta nie jest obecnie rozbudowana,
+ * jedyne cechy jakie posiada to pobrane z konstruktora stałe dotyczące minimalnej
+ * i maksymalnej prędkości lotu (poza danymi w dotyczącymi konstruktora Postaci).
  */
 
 #ifndef LATAJACE_H_
@@ -10,7 +10,6 @@
 
 class Latajace : public Postac{
 public:
-	// Konstruktor, destruktor
 	Latajace(int arg_ilosc_tekstur, float arg_klatki_na_sek, float arg_vel_lotu_min,
 			float arg_vel_lotu_max);
 	virtual ~Latajace();

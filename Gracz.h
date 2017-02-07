@@ -1,5 +1,8 @@
-/* Postać gracza, którym można sterować za pomocą układu klawiszy
+/*
+ * Postać gracza, czyli Jaszczurka, którą można sterować.
  *
+ * Klasa pochodna Jaszczurki zawierająca dodatkowow skaźnik do osoby
+ * grającej tą jaszczurką oraz takie cechy jak np. imię.
  */
 
 #ifndef GRACZ_H_
@@ -10,8 +13,6 @@
 
 #include "Grajacy.h"
 #include "Jaszczurka.h"
-#include "Imie.h"
-#include "Input.h"
 
 class Gracz: public Jaszczurka {
 public:
@@ -28,10 +29,10 @@ public:
 	void getKeys();
 
 private:
-	//********************* FUNDAMENTALNE DANE********************
-	// Którys z grających, reprezentuje jego imię, punkty i korzysta z
-	// ustawień tam też przypisanych.
-	Grajacy * grajacy;
+	//********************* ELEMENTY GRACZA ********************
+	// Którys z grających, ten obiekt reprezentuje jego imię,
+	// punkty i jego ustawienia poruszania.
+	Grajacy *grajacy;
 
 	//************* DANE DOTYCZĄCE WYGLĄDU I ANIMACJI *************
 	// Czcionka imiona

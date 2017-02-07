@@ -1,4 +1,5 @@
-/* Jaszczurka, od której dziedziczona jest klasa Gracz.
+/*
+ * Jaszczurka, od której dziedziczona jest klasa Gracz.
  * Potrafi kamuflować się i atakować, gdzie siła ataku
  * zależy od czasu jego ładowania.
  */

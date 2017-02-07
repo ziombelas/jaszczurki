@@ -1,8 +1,7 @@
 /*
  * Rozgrywka.h
  *
- *  Created on: 18-10-2016
- *      Author: maks
+todo opis klasy Rozgrywka
  */
 
 #ifndef ROZGRYWKA_H_
@@ -18,18 +17,20 @@ public:
 	// Główna procedura z pętlą głowną
 	void run();
 private:
-	//**************** FUNDAMENTALNE DANE (SFML) *************
-	sf::RenderWindow *window;
-	sf::Event event;
+	//****************** ELEMENTY ROZGRYWKI ******************
+	int runda;
 
-	ProgramState *state;
-
+	// Tworzona dynamicznie Gra
 	Gra *gra;
+
+	//****************** DOTYCZY PĘTLI PROGRAMU **************
+	ProgramState *state;
 
 	Settings *ustawienia;
 
-	// Numer aktualnej rundy
-	int runda;
+	//**************** POTRZEBNE DLA DZIAŁANIA SFML *************
+	sf::RenderWindow *window;
+	sf::Event event;
 };
 
 #endif /* ROZGRYWKA_H_ */

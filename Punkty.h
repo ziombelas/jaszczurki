@@ -21,10 +21,11 @@ public:
 	// Aktualizacja procesów związanych z lecącymi punktami
 	void update(int mineloCzasu);
 private:
+	//******************** ELEMENTY PUNKTÓW **********************
 	// Tablica do której leca punkty
-	TablicaNaWynik * tablicaNaWynik;
+	TablicaNaWynik *tablicaNaWynik;
 
-	// Liczba punktów (+wynik)
+	// Liczba punktów lecących punktów
 	int wynik;
 
 	// Czy te punkty są już dodane
@@ -33,6 +34,7 @@ private:
 	// Prędkość z jaką leci góra/dół
 	double vx, vy;
 
+	//******************* ELEMENTY GRAFICZNE *********************
 	float przezroczystosc;
 
 	sf::Font font;

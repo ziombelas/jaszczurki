@@ -1,3 +1,9 @@
+/*
+ * Input, za pomocą którego porusza się gracz, może być to pad
+ * o id 0-4 (nr pada), bądź klawiatura, gdzie id = 0 oznacza strzałki,
+ * a id = 1 oznacza wsad.
+ */
+
 #ifndef INPUT_H_
 #define INPUT_H_
 
@@ -27,7 +33,6 @@ public:
 	// Przyjaźń z PoleDolacz, aby mógł używać jakPoruszacSprite
 	friend class PoleDolacz;
 
-//	Input();
 	Input(jakiInput input, int id, sf::Event & event);
 
 	bool isPressed(ktoryKlawisz);

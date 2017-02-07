@@ -1,8 +1,7 @@
 /*
- * Mapa.h
- *
- *  Created on: 11-10-2016
- *      Author: maks
+ * Mapa to wirtualna klasa zawierająca wektory dynamicznie
+ * tworzonych elementów mapy : scianek, terenów oraz informacje
+ * o początkowych pozycjach respawnu oraz tło
  */
 
 #ifndef MAPA_H_
@@ -14,12 +13,14 @@
 class Mapa {
 public:
 	Mapa();
-	~Mapa();
+	virtual ~Mapa();
 protected:
+	// ********************* ELEMENTY MAPY ******************
 	std::vector<Scianka*> scianka;
 	std::vector<Teren*> teren;
 	std::vector<sf::Vector2f> respPos;
 
+	// ********************* ELEMENTY GRAFICZNE ******************
 	sf::Texture tlo_texture;
 
 private:

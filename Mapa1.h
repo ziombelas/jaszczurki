@@ -1,3 +1,7 @@
+/*
+ * Pierwotna, podstawowa mapka.
+ */
+
 #ifndef MAPA1_H_
 #define MAPA1_H_
 

@@ -18,7 +18,7 @@ Program::Program(void) {
 	font_opis.loadFromFile("data/fonts/EncodeSansWide-Black.ttf");
 
 
-	ifTutorial = false;
+//	ifTutorial = false;
 	state = MENU;
 
 	ustawienia = NULL;
@@ -72,7 +72,7 @@ void Program::run() {
 						|| sf::Joystick::isButtonPressed(3, 0)
 						|| (event.type == sf::Event::KeyPressed
 								&& event.key.code == sf::Keyboard::Return)) {
-					ifTutorial = false;
+//					ifTutorial = false;
 					state = EKRAN_WYBORU;
 				}
 			}

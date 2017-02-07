@@ -1,6 +1,6 @@
 #include "Gracz.h"
 
-Gracz::Gracz(sf::Vector2f startVec, Grajacy * grajacy) {
+Gracz::Gracz(sf::Vector2f startVec, Grajacy *grajacy) {
 	this->respPos = startVec;
 	this->grajacy = grajacy;
 
@@ -18,14 +18,14 @@ Gracz::Gracz(sf::Vector2f startVec, Grajacy * grajacy) {
 	vel_grawitacja = min_vel_grawitacja;
 
 	for (int i = 0; i < 9; i++) {
-		imieSprite[i].setString(grajacy->imie.get_c_str());
+		imieSprite[i].setString(grajacy->getImie().get_c_str());
 		imieSprite[i].setFont(font);
 		imieSprite[i].setCharacterSize(32);
 
 		imieSprite[i].setOrigin(imieSprite[i].getGlobalBounds().width / 2, 50);
-		if (grajacy->imie.getPlec() == FACET)
+		if (grajacy->getImie().getPlec() == FACET)
 			imieSprite[i].setColor(sf::Color(255, 40, 30));
-		else if (grajacy->imie.getPlec() == BABKA)
+		else if (grajacy->getImie().getPlec() == BABKA)
 			imieSprite[i].setColor(sf::Color(255, 40, 150));
 
 	}
@@ -38,7 +38,7 @@ Gracz::~Gracz() {
 }
 
 void Gracz::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-	// Wyświetlenia imienia, jeśli żyje
+	// Wyświetlenia imienia
 	switch (status) {
 	case ZYJE: {
 		for (int i = 0; i < 9; i++) {
@@ -77,12 +77,13 @@ void Gracz::update(int mineloCzasu) {
 	for (int i = 0; i < 9; i++) {
 		imieSprite[i].setPosition(sprite[i].getPosition());
 	}
+
 }
 
 void Gracz::getKeys() {
-	PRESSED[lewo] = (grajacy->input->isPressed(ster_lewo));
-	PRESSED[prawo] = (grajacy->input->isPressed(ster_prawo));
-	PRESSED[dol] = (grajacy->input->isPressed(ster_dol));
-	PRESSED[skok] = (grajacy->input->isPressed(ster_skok));
-	PRESSED[atak] = (grajacy->input->isPressed(ster_atak));
+	PRESSED[lewo] = (grajacy->getInput().isPressed(ster_lewo));
+	PRESSED[prawo] = (grajacy->getInput().isPressed(ster_prawo));
+	PRESSED[dol] = (grajacy->getInput().isPressed(ster_dol));
+	PRESSED[skok] = (grajacy->getInput().isPressed(ster_skok));
+	PRESSED[atak] = (grajacy->getInput().isPressed(ster_atak));
 }

@@ -1,10 +1,3 @@
-/*
- * Latajace.cpp
- *
- *  Created on: 24-09-2016
- *      Author: maks
- */
-
 #include "Latajace.h"
 
 Latajace::Latajace(int arg_ilosc_tekstur, float arg_klatki_na_sek, float arg_vel_lotu_min,

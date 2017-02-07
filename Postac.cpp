@@ -18,16 +18,13 @@ Postac::Postac(int arg_ilosc_tekstur, float arg_klatki_na_sek) :
 	move_y = 0;
 
 	status = ZYJE;
-	//ucinanie
-	//sprite.setTextureRect(sf::IntRect(60, 60, 32, 32));
 }
 
 Postac::~Postac(void) {
 }
 
-
 void Postac::update(int mineloCzasu) {
-	// ************** PROCESY KOŃCOWE **************
+	// ************** PROCESY KOŃCOWE UPDATE **************
 	// Przesunięcie spritu na nową pozycję
 	sprite[0].setPosition(getNextPosition());
 
@@ -36,7 +33,7 @@ void Postac::update(int mineloCzasu) {
 }
 
 void Postac::updateWszystkieOdniesienia() {
-	 /* Na potrzeby przechodzenia przez ściany, za każdym razem gdy
+	/* Na potrzeby przechodzenia przez ściany, za każdym razem gdy
 	 * określana jest pozycja gracza dorysowywane jest dodatkowe 8
 	 * spritów. Obiekt sprite[0] jest tym podstawowym i na podstawie jego
 	 * pozycji ustawiene są pozostałe.
@@ -93,19 +90,9 @@ void Postac::updateWszystkieOdniesienia() {
 	prevPosition[8] = getPrevPosition(0) + sf::Vector2f(-1920, -990);
 }
 
-//void Postac::getKeys() {
-//
-//	PRESSED[lewo] = (input->isPressed(ster_lewo));
-//	PRESSED[prawo] = (input->isPressed(ster_prawo));
-//	PRESSED[dol] = (input->isPressed(ster_dol));
-//	PRESSED[skok] = (input->isPressed(ster_skok));
-//	PRESSED[atak] = (input->isPressed(ster_atak));
-//
-//
-//}
-
 void Postac::playAnimation(int mineloCzasu) {
-	// W przypadku ruchu następuje przesunięcie klatki na podstawie upłyniętego czasu
+	// W przypadku ruchu następuje przesunięcie klatki na podstawie
+	// ilości upłyniętego czasu
 	frame += klatki_na_sek * (mineloCzasu / 1000.f);
 	if (frame >= ilosc_tekstur)
 		frame = 0;
@@ -121,7 +108,7 @@ sf::Vector2f Postac::getPrevPosition(unsigned int nr) const {
 	return prevPosition[nr];
 }
 
-sf::Vector2f Postac::getNextPosition() {
+sf::Vector2f Postac::getNextPosition() const {
 	return sf::Vector2f(sprite[0].getPosition().x + move_x,
 			sprite[0].getPosition().y + move_y);
 }
@@ -155,8 +142,12 @@ void Postac::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 		break;
 	case UMIERA: {
 
-	}break;
+	}
+		break;
 	case UMIERAJACY: {
+		// Jeśli umiera rysowane są jedynie klatki ze zmiennym odniesiem w osi x
+		// by unikać rysowania spritów na górze gdy ciało spada i przechodzi przez
+		// dolną krawędź ekranu
 		target.draw(sprite[0]);
 		target.draw(sprite[1]);
 		target.draw(sprite[2]);
@@ -168,7 +159,7 @@ void Postac::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 	}
 }
 
-sf::Vector2f Postac::pozycjaWzgledemMonitora() {
+sf::Vector2f Postac::pozycjaWzgledemMonitora() const {
 	sf::Vector2f vect(getPosition(0).x, getPosition(0).y);
 	if (vect.x >= 1920)
 		vect += sf::Vector2f(-1920, 0);

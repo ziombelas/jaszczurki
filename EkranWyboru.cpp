@@ -28,12 +28,7 @@ EkranWyboru::EkranWyboru(sf::RenderWindow &window, Settings * ustawienia,
 	input[4] = new Input(Input::PAD, 2, event);
 	input[5] = new Input(Input::PAD, 3, event);
 
-	// Czcionka do tekstu dołączenia
-	sf::Font fontWPolu;
-
-	if (!fontWPolu.loadFromFile("data/fonts/EncodeSansWide-Black.ttf")) {
-		return;
-	}
+	fontWPolu.loadFromFile("data/fonts/EncodeSansWide-Black.ttf");
 
 	// Utworzenie tekstów zachęcających do dołączenia
 	for (int n = 0; n < 4; n++) {
@@ -59,7 +54,7 @@ EkranWyboru::~EkranWyboru(void) {
 	for (int i = 0; i < 6; i++)
 		delete input[i];
 
-	// Usunięcie wszystkich zajętych już pól wyboru, czyli tych gdzie ktoś dołączył
+	// Usunięcie wszystkich pól wyboru gdzie ktoś dołączył
 	for (unsigned int i = 0; i < pole.size(); i++)
 		delete pole[i];
 
@@ -126,7 +121,7 @@ void EkranWyboru::run() {
 
 		window->clear();
 		update();
-		draw();
+		wyswietl();
 	} // ************************************************************ //
 }
 
@@ -157,7 +152,7 @@ void EkranWyboru::update() {
 	}
 }
 
-void EkranWyboru::draw() {
+void EkranWyboru::wyswietl() {
 	// Narysowanie wolnych pól dla graczy
 	for (int i = 0; i < 4; i++)
 		window->draw(rectNaGracza[i]);

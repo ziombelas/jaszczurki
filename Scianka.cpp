@@ -27,7 +27,7 @@ Scianka::Scianka(KolorSciany kolor, int x, int y, int w, int h) {
 		break;
 	}
 
-	predkosc_na_sek = 30;
+	predkosc_na_sek = 29.25;
 	updateWszystkieOdniesienia();
 }
 
@@ -35,7 +35,8 @@ Scianka::~Scianka(void) {
 }
 
 void Scianka::update(int mineloCzasu) {
-	rect[0].move(predkosc_na_sek * (mineloCzasu / 1000.f), 0);
+	// Poruszanie się
+	rect[0].move(predkosc_na_sek * (mineloCzasu / 1000.0), 0);
 
 	// Ustawienie wszystkich odniesień na nowe pozycje
 	updateWszystkieOdniesienia();
@@ -77,25 +78,21 @@ void Scianka::updateWszystkieOdniesienia() {
 	// z prawej
 	if (rect[0].getPosition().x > 1920 + 1920 / 2) {
 		rect[0].move(-1920, 0);
-//		prevPosition[0] += sf::Vector2f(-1920, 0);
 	}
 
 	// z lewej
 	if (rect[0].getPosition().x < -1920 / 2) {
 		rect[0].move(1920, 0);
-//		prevPosition[0] += sf::Vector2f(1920, 0);
 	}
 
 	// z dołu
-	if (rect[0].getPosition().y > 1080 + 1080 / 2) {
+	if (rect[0].getPosition().y > 1080) {
 		rect[0].move(0, -990);
-//		prevPosition[0] += sf::Vector2f(0, -990);
 	}
 
 	// z góry
 	if (rect[0].getPosition().y < -1080 / 2) {
 		rect[0].move(0, 990);
-//		prevPosition[0] += sf::Vector2f(0, 990);
 	}
 
 	rect[1].setPosition(rect[0].getPosition() + sf::Vector2f(1920, 0));

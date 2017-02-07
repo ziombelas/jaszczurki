@@ -1,7 +1,7 @@
 /*
- * Scianka odnosi sie do jednokolorwej sciany kamuflujacej. By ją zInicjalizować
- * należy podać położenie początkowe, wielkość i kolor spośród zadeklarowanych
- * w typie wyliczeniowym KolorSciany.
+ * Scianka odnosi się do jednokolorowej sciany kamuflujacej. By ją stworzyć
+ * należy podać położenie początkowe, wielkość i kolor (spośród zadeklarowanych
+ * w typie wyliczeniowym KolorSciany).
  */
 
 #ifndef SCIANKA_H_
@@ -20,6 +20,7 @@ public:
 
 	KolorSciany kolor;
 
+	// Aktualizacja procesów związanych ze ścianką
 	void update(int mineloCzasu);
 
 	// Ustawienie 8 dodatkowych spritów postaci o przesunięcia z
@@ -34,17 +35,17 @@ public:
 	sf::Vector2f getPosition(unsigned int nr = 0) const;
 	sf::Vector2f getPrevPosition(unsigned int nr = 0) const;
 
+	// Wyświetlanie ścianki na ekranie
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 private:
 	//************* DANE DOTYCZĄCE WYGLĄDU I ANIMACJI *************
-	// Głowny element - prostokąt będący ścianką + 8 odniesień do pozostałych pozycji
+	// Głowny prostokąt będący ścianką + 8 odniesień do pozostałych pozycji
 	sf::RectangleShape rect[9];
 
 	//******************* DANE DOTYCZĄCE FIZYKI *******************
 	// Predkość ruchu w pix/s
 	double predkosc_na_sek;
 
-	friend class Postac;
 	friend class Gra;
 
 };

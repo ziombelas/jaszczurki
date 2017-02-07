@@ -8,7 +8,7 @@
 #include "Input.h"
 #include "Imie.h"
 
-class PoleDolacz: public sf::RectangleShape {
+class PoleDolacz: public sf::Drawable {
 public:
 	PoleDolacz(int x, int y, Input *input);
 	~PoleDolacz();
@@ -22,9 +22,8 @@ public:
 	bool wybranoKolor();
 
 private:
-	//**************** DO WYŚWIETLENIA *****************
-	int x, y;
-	sf::RectangleShape bok;
+	//**************** ELEMENTY POLA DOLACZANIA *****************
+	sf::RectangleShape rect;
 
 	sf::Sprite jakPoruszacSprite;
 
@@ -35,8 +34,7 @@ private:
 	sf::Text textArrows;
 
 	//************** DOTYCZY WYBORU IMIENIA**************
-	static const int iloscImion = 7;
-	Imie * imie[iloscImion];
+	std::vector<Imie*> imie;
 
 	int nr_imiona, nr_koloru;
 

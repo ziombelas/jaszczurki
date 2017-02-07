@@ -15,6 +15,10 @@ Imie & Grajacy::getImie() {
 	return imie;
 }
 
+Input & Grajacy::getInput() {
+	return *input;
+}
+
 int Grajacy::getWynik() {
 	return wynik;
 }

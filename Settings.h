@@ -1,3 +1,8 @@
+/*
+ * Ustawieniają tak naprawdę tylko pojemnik na grających, gdzie zbierane
+ * są informacje o sposobie ich sterowania oraz np. punktach.
+ */
+
 #ifndef SETTINGS_H_
 #define SETTINGS_H_
 
@@ -6,7 +11,6 @@
 
 #include "Grajacy.h"
 
-//narazie umieszczam tutaj
 enum ProgramState {
 	MENU, ROZGRYWKA, EKRAN_WYBORU, PROGRAM_END
 };
@@ -21,7 +25,6 @@ private:
 
 	friend class EkranWyboru;
 	friend class Gra;
-	//
 	friend class Program;
 };
 

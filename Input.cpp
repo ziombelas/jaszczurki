@@ -1,15 +1,4 @@
-/*
- * Input, za pomocą którego porusza się gracz, może być to pad
- * o id 0-4 (nr pada), bądź klawiatura, gdzie id = 0 oznacza strzałki,
- * a id = 1 oznacza wsad.
- */
-
 #include "Input.h"
-
-//Input::Input() {
-//	event = NULL;
-////	KL_atak = NULL;
-//}
 
 int Input::getId() {
 	return id;
@@ -56,7 +45,7 @@ Input::Input(jakiInput jaki, int id, sf::Event & event) {
 	case PAD: {
 		// Każdy pad ma to samo sterowanie wieć nie muszę
 		// przypisywać klawiszy odpowiedzialnych za poszczególne funkcje
-		// tylko używa ich stałych nazw przycisw isPressed
+		// tylko używać ich stałych nazw podczas wywołania isPressed()
 
 		przesuniecieGalki = 0;
 		jakPoruszacSprite.setTexture(jakPoruszacPad);
@@ -118,8 +107,9 @@ bool Input::isPressed(ktoryKlawisz jaki) {
 		}
 			break;
 		}
-		// DOTYCZY STEROWANIA PADEM
-	} else if (rodzajInputu == PAD) {
+	}
+	// DOTYCZY STEROWANIA PADEM
+	else if (rodzajInputu == PAD) {
 		switch (jaki) {
 		case ster_lewo: {
 			if (sf::Joystick::getAxisPosition(id, sf::Joystick::X) < -50)
@@ -194,8 +184,8 @@ Input & Input::operator=(const Input & stary) {
 
 	KL_akceptuj = stary.KL_akceptuj;
 	KL_esc = stary.KL_esc;
-	KL_lewo= stary.KL_lewo;
-	KL_prawo= stary.KL_prawo;
+	KL_lewo = stary.KL_lewo;
+	KL_prawo = stary.KL_prawo;
 	KL_dol = stary.KL_dol;
 	KL_skok = stary.KL_skok;
 	KL_atak = stary.KL_atak;

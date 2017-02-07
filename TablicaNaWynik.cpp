@@ -18,7 +18,7 @@ TablicaNaWynik::~TablicaNaWynik() {
 
 void TablicaNaWynik::draw(sf::RenderTarget &target,
 		sf::RenderStates states) const {
-	// Narysowanie tła
+	// Narysowanie tła czyli czarnego prostokątu
 	target.draw(rect);
 
 	if (wUzyciu) {

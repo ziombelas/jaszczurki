@@ -33,7 +33,7 @@ void Rozgrywka::run() {
 
 		runda++;
 
-		// Wyjście jeśli to już nie rozgrywka
+		// Wyjście, jeśli rozgrywka została zakończona
 		if (*state != ROZGRYWKA)
 			break;
 	}

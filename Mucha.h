@@ -1,13 +1,14 @@
-/* Mucha która lata sobie tu i tam... Jej odloty to losowe
- * zmienne z przedziału min/max_odlot a prędkości z jakimi
- * sobie popierdziela są także losowe na podstawie stałych
- * z klasy Latajace dostarczonych w konstruktorze Muchy.
+/*
+ * Mucha, która lata sobie tu i tam... Jej docelowe miejsca lotu
+ * to losowe zmienne z przedziału min/max_odlot, a prędkości z
+ * jakimi sobie popierdziela są także losowe z przedziału stałych
+ * vel_lotu_min/max wrzuconych w konstruktor klasy Latajace.
  *
  * Gdy mucha osiągnie swój docelowy punkt (dest) to
  * następuje losowanie wyżej wymienonych wartośći
  * (nowy dest w odleglości min/max_odlot, predkość
  * z przedziału vel_lotu_min/max i na tej podstawie ustala się
- * zmienne czyWiecejX/Y żeby wiedzieć w jaką stronę ma się
+ * zmienne czyWiecejX/Y, żeby wiedzieć w jaką stronę ma się
  * kierować na dest.
  */
 
@@ -15,12 +16,10 @@
 #define MUCHA_H_
 
 #include "Latajace.h"
-#include <cstdlib>
 
 class Mucha: public Latajace {
 public:
-	// Konstruktor, destruktor
-	Mucha();
+	Mucha(bool firstOne = false);
 	~Mucha();
 
 	// Aktualizacja procesów związanych z muchą
@@ -29,11 +28,11 @@ private:
 	// Nadanie nowej pozycji docelowej (dest)
 	void nadajCelLotu();
 
-	// Minimalna i maksymalna wartośc na ile może odfrunąć
+	// Minimalna i maksymalna wartość na ile może odfrunąć (pix)
 	int min_odlot;
 	int max_odlot;
 
-	// Czy musi przekroczyć dodatnio (+1/) czy ujemnie (-1) wartość w x/y
+	// Czy musi przekroczyć dodatnio (+1) czy ujemnie (-1) wartość w x/y
 	int czyWiecejX, czyWiecejY;
 
 	// Punkt docelowy lotu

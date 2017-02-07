@@ -1,7 +1,7 @@
-/* Lądowe postacie, w tym momencie tylko Jaszczurka.
- * Posiadają stałe odpowiadające za prędkość ich poruszania się/skoku
- * (do podania w konstruktorze) oraz zmienne dot. ruchu w osi X oraz
- * w osi Y uwzględniając grawitację.
+/*
+ * Lądowe postacie, w tym momencie tylko Jaszczurka.
+ * W konstruktorze należy podać stałe odpowiadające za prędkość poruszania
+ * się i skoku (poza informacjami dla konstruktora Postaci).
  */
 
 #ifndef LADOWE_H_
@@ -11,7 +11,6 @@
 
 class Ladowe: public Postac {
 public:
-	// Konstruktor, destruktor
 	Ladowe(int arg_ilosc_tekstur, float arg_klatki_na_sek,
 			float arg_vel_ruch_const, float arg_vel_skok_const);
 	virtual ~Ladowe();

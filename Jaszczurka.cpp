@@ -7,11 +7,12 @@ Jaszczurka::Jaszczurka() :
 	fazaAtaku = NIEATAKUJE;
 	naladowanieAtk = 0;
 
+	// Dotyczące kolizyjności
 	tolerancja_lp = 10;
 	tolerancja_top = 89;
 	tolerancja_bot = 16;
 
-	// Wczytanie 11 tekstur jaszczurki w ruchu
+	// Wczytanie tekstur poruszającej się jaszczurki
 	tekstura_postaci[0].loadFromFile("data/JASZCZURKA/1.png");
 	tekstura_postaci[1].loadFromFile("data/JASZCZURKA/2.png");
 	tekstura_postaci[2].loadFromFile("data/JASZCZURKA/3.png");
@@ -88,7 +89,7 @@ void Jaszczurka::update(int mineloCzasu) {
 
 	switch (status) {
 	case ZYJE: {
-		//================= JASZCZURKA ZYJE ===============
+		//======================== JASZCZURKA ZYJE ======================
 		//********************** ATAKOWANIE **********************
 		switch (fazaAtaku) {
 		// ------ KIEDY JESZCZE NIE ATAKUJE ------
@@ -109,7 +110,7 @@ void Jaszczurka::update(int mineloCzasu) {
 			if (PRESSED[atak]) {
 				naladowanieAtk =
 						(czasLadowaniaAtk.getElapsedTime().asMilliseconds()
-								+ 400);
+								+ 300);
 				if (naladowanieAtk > 3900)
 					naladowanieAtk = 3900;
 			} else
@@ -124,10 +125,10 @@ void Jaszczurka::update(int mineloCzasu) {
 			// ------------ GDY ATAKUJE -----------
 		case ATAKUJE: {
 			// i nadanie nowej
-			vel_atak = zwrot * naladowanieAtk * 2.555;
+			vel_atak = zwrot * naladowanieAtk * 2.655;
 
 			// Zwalnianie podczas ataku
-			naladowanieAtk -= mineloCzasu * (naladowanieAtk * 1.21 + 4900)
+			naladowanieAtk -= mineloCzasu * (naladowanieAtk * 1.19 + 4400)
 					/ 1000.f;
 
 			// Usunięcie lotności
@@ -143,7 +144,7 @@ void Jaszczurka::update(int mineloCzasu) {
 			break;
 		} //switch (fazaAtaku)
 
-		//********************* RUCH LEWO/PRAWO*********************
+		//******************* RUCH LEWO/PRAWO *******************
 		// Poruszanie się gdy wciśnięto w lewo/prawo
 		if (PRESSED[lewo] && !PRESSED[prawo] && fazaAtaku == NIEATAKUJE) {
 			vel_ruch = -vel_ruch_const;
@@ -163,7 +164,7 @@ void Jaszczurka::update(int mineloCzasu) {
 			for (int i = 0; i < 9; i++)
 				sprite[i].setScale(1.8, 1.8);
 
-		//************************* SKAKANIE *************************
+		//*********************** SKAKANIE ***********************
 		// Początek skoku
 		if (maPodloze && PRESSED[skok] && fazaAtaku != LADUJE) {
 			skacze = true;
@@ -187,10 +188,9 @@ void Jaszczurka::update(int mineloCzasu) {
 
 	}
 		break;
-		//=============== NASTĘPUJE ŚMIERĆ JASZCZURKI==============
+		//================== NASTĘPUJE ŚMIERĆ JASZCZURKI ===============
 		// Wywołanie następuje tylko raz, następnie następuje przełączenie na stan UMIERA
 	case UMIERA: {
-
 		sf::Vector2f vect(getPosition(0).x, getPosition(0).y);
 		if (vect.x > 1920)
 			vect += sf::Vector2f(-1920, 0);
@@ -206,9 +206,8 @@ void Jaszczurka::update(int mineloCzasu) {
 		status = UMIERAJACY;
 	}
 		break;
-		//================ JASZCZURKA NIE ŻYJE ================
+		//======================= JASZCZURKA NIE ŻYJE ===================
 	case UMIERAJACY: {
-
 		// Sprzątnięcie postaci która spadła poniżej dolnej krawędzi ekranu
 		if (getGlobalBounds().top
 				> 1080 + tolerancja_bot + tolerancja_lp * 2 + tolerancja_top)
@@ -230,6 +229,10 @@ void Jaszczurka::update(int mineloCzasu) {
 				sprite[i].setRotation(180);
 		}
 
+	}
+		break;
+	case POZAMIATANY: {
+		// nic się nie dzieje
 	}
 		break;
 	} //switch status

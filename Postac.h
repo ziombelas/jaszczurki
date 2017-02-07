@@ -1,3 +1,8 @@
+/*
+ * Każda postać w grze. W konstruktorze należy podać ilość klatek oraz tempo
+ * w jakim następować ma ich animacja.
+ */
+
 #ifndef POSTAC_H_
 #define POSTAC_H_
 
@@ -7,7 +12,6 @@
 
 class Postac: public Obiekt {
 public:
-	// Konstruktor, destruktor
 	Postac(int arg_ilosc_tekstur, float arg_klatki_na_sek);
 	virtual ~Postac();
 
@@ -22,13 +26,14 @@ public:
 	// kombinacji dł./szer. ekranu by mogły przechodzić przez krawędzie ekranu
 	void updateWszystkieOdniesienia();
 
+	// Zarządzanie animacją postaci
 	void playAnimation(int mineloCzasu);
 
 	// Pozycja gracz w tej klatce i poprzedniej/następnej
 	sf::Vector2f getPosition(unsigned int nr = 0) const;
 	sf::Vector2f getPrevPosition(unsigned int nr = 0) const;
-	sf::Vector2f getNextPosition();
-	sf::Vector2f pozycjaWzgledemMonitora();
+	sf::Vector2f getNextPosition() const;
+	sf::Vector2f pozycjaWzgledemMonitora() const;
 
 	// Prostokąt, w którym jest gracz teraz, jak i klatkę temu
 	virtual sf::FloatRect getGlobalBounds(unsigned int nr = 0) const;
@@ -36,9 +41,8 @@ public:
 
 	// Wyświetlanie postaci na ekranie
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-
-	friend class Game;
 protected:
+	// **************************** OGÓLNE  ************************
 	// Status, czyli np. czy postać żyje
 	Status status;
 
@@ -78,7 +82,7 @@ protected:
 	// Prędkość z odepchnięcia (pix/s)
 	float vel_odpych_x, vel_odpych_y;
 
-	// ********************** POZOSTAŁE SKŁADOWE *******************
+	// ************************ POZOSTAŁE *************************
 	// Poprzednia pozycja
 	sf::Vector2f prevPosition[9];
 

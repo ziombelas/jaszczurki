@@ -1,4 +1,11 @@
-#pragma once
+/*
+ * Program gdzie ma początek utworzenie okna sfml i zarządzanie
+ * aktualnym etapem programu w zależności od ProgramState.
+ * Program zawiera w sobie również ekran tytułowy i jego obsługę.
+ */
+
+#ifndef PROGRAM_H_
+#define PROGRAM_H_
 
 #include <SFML/Graphics.hpp>
 #include <string>
@@ -16,8 +23,10 @@ public:
 	// Urchomienie programu
 	void run();
 private:
-	//**************** FUNDAMENTALNE DANE ****************
-	sf::Event event;
+	//***************** ELEMENTY PROGRAMU *****************
+//	bool ifTutorial;
+
+	//**************** DOTYCZY PĘTLI PROGRAMU *************
 	ProgramState state;
 	Settings *ustawienia;
 
@@ -28,6 +37,10 @@ private:
 	sf::Sprite tlo_jaszczurki;
 	sf::Sprite tlo_jaszczurki_drugibok;
 
-	bool ifTutorial;
+	//**************** POTRZEBNE DLA DZIAŁANIA SFML *************
+	sf::Event event;
+
+
 };
 
+#endif /* GRA_H_ */

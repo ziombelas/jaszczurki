@@ -66,9 +66,6 @@ Gra::~Gra() {
 	for (unsigned int i = 0; i < mucha.size(); i++)
 		delete mucha[i];
 
-	for (unsigned int i = 0; i < 4; i++)
-		delete tablicaNaWynik[i];
-
 	for (unsigned int i = 0; i < punkty.size(); i++) {
 		// Dodanie punktów, który nie zdążyły dolecieć zanim Gra się
 		// usunie.
@@ -77,6 +74,9 @@ Gra::~Gra() {
 					punkty[i]->wynik);
 		delete punkty[i];
 	}
+
+	for (unsigned int i = 0; i < 4; i++)
+		delete tablicaNaWynik[i];
 }
 
 void Gra::run() {
@@ -286,8 +286,9 @@ void Gra::wyswietl() {
 
 	// Napis zwycięstwa: Wygrywa Xyz (wstaw Maks :D)
 	if (etap == KONIEC_RUNDY) {
-		std::string zw = "gratsy ";
-		zw += winner;
+		wchar_t zw[30];
+		wcscpy(zw, L"Gratsy ");
+		wcscat(zw, winner);
 
 		koniecText.setString(zw);
 		koniecText.setFont(font);
@@ -764,7 +765,7 @@ bool Gra::kol_calkowita(Obiekt &ob1, int nr, Obiekt & ob2, int nr2) {
 					>= static_cast<int>(ob2.getGlobalBounds(nr2).top)
 			&& static_cast<int>(ob1.getGlobalBounds(nr).top
 					+ ob1.getGlobalBounds(nr).height)
-					< static_cast<int>(ob2.getGlobalBounds().top
+					< static_cast<int>(ob2.getGlobalBounds(nr2).top
 							+ ob2.getGlobalBounds(nr2).height))
 		return true;
 	return false;

@@ -8,28 +8,6 @@
 #include <string.h>
 #include <SFML/Graphics.hpp>
 
-enum jakieImie {
-	BRAK,
-	MAKS,
-	SZYMON,
-	JUREK,
-	WOJTEK,
-	MACIEK,
-	WERA,
-	STYKU,
-	TOSIA,
-	PIOTREK,
-	SAMANTA,
-	BIALY,
-	KASIA,
-	MATEUSZ,
-	SUM,
-	DANIELA,
-	MIKSER,
-	EDDIE,
-	DOMSON,
-};
-
 enum jakaPlec {
 	FACET, BABKA
 };
@@ -39,16 +17,16 @@ public:
 	Imie();
 	~Imie();
 
-	Imie(jakieImie jakie);
+	Imie(const wchar_t *imie, jakaPlec plec);
 
-	char *get_c_str();
+	wchar_t *get_c_str();
 	jakaPlec getPlec();
 
 	// Przełowanie operatora przypisania dla imion
 	Imie & operator=(const Imie & stare);
 private:
 	// Imię gracza
-	char imie[16];
+	wchar_t imie[16];
 
 	jakaPlec plec;
 };

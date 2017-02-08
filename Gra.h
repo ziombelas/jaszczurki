@@ -45,7 +45,7 @@ private:
 	// Tablice na górze ekranu na których pokazywany jest wynik graczy
 	TablicaNaWynik *tablicaNaWynik[4];
 
-	char *winner;
+	wchar_t *winner;
 
 	Etap etap;
 	sf::Clock czasKonca;

@@ -16,25 +16,25 @@ PoleDolacz::PoleDolacz(int x, int y, Input *input) {
 	fontArrows.loadFromFile("data/fonts/TakaoPGothic.ttf");
 	font.loadFromFile("data/fonts/EncodeSansWide-Black.ttf");
 
-	imie.push_back(new Imie(BRAK));
-	imie.push_back(new Imie(MAKS));
-	imie.push_back(new Imie(SZYMON));
-	imie.push_back(new Imie(JUREK));
-	imie.push_back(new Imie(WOJTEK));
-	imie.push_back(new Imie(MACIEK));
-	imie.push_back(new Imie(WERA));
-	imie.push_back(new Imie(STYKU));
-	imie.push_back(new Imie(TOSIA));
-	imie.push_back(new Imie(PIOTREK));
-	imie.push_back(new Imie(SAMANTA));
-	imie.push_back(new Imie(BIALY));
-	imie.push_back(new Imie(KASIA));
-	imie.push_back(new Imie(MATEUSZ));
-	imie.push_back(new Imie(SUM));
-	imie.push_back(new Imie(DANIELA));
-	imie.push_back(new Imie(MIKSER));
-	imie.push_back(new Imie(EDDIE));
-	imie.push_back(new Imie(DOMSON));
+	imie.push_back(new Imie(L"imie", FACET));
+	imie.push_back(new Imie(L"Maks", FACET));
+	imie.push_back(new Imie(L"Szymon", FACET));
+	imie.push_back(new Imie(L"Jurek", FACET));
+	imie.push_back(new Imie(L"Wojtek", FACET));
+	imie.push_back(new Imie(L"Maciek", FACET));
+	imie.push_back(new Imie(L"Wera", BABKA));
+	imie.push_back(new Imie(L"Styku", FACET));
+	imie.push_back(new Imie(L"Tosia", BABKA));
+	imie.push_back(new Imie(L"Piotrek", FACET));
+	imie.push_back(new Imie(L"Samanta", BABKA));
+	imie.push_back(new Imie(L"Biały", FACET));
+	imie.push_back(new Imie(L"Kasia", BABKA));
+	imie.push_back(new Imie(L"Mateusz", FACET));
+	imie.push_back(new Imie(L"Sum", FACET));
+	imie.push_back(new Imie(L"Daniela", BABKA));
+	imie.push_back(new Imie(L"Mikser", FACET));
+	imie.push_back(new Imie(L"Eddie", FACET));
+	imie.push_back(new Imie(L"Domson", FACET));
 
 	nr_imiona = 0;
 

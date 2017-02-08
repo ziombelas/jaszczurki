@@ -43,21 +43,21 @@ void Scianka::update(int mineloCzasu) {
 }
 
 sf::FloatRect Scianka::getGlobalBounds(unsigned int nr) const {
-	return rect[0].getGlobalBounds();
+	return rect[nr].getGlobalBounds();
 }
 
 sf::FloatRect Scianka::getPrevGlobalBounds(unsigned int nr) const {
-	return rect[0].getGlobalBounds();
+	return rect[nr].getGlobalBounds();
 }
 
 sf::Vector2f Scianka::getPosition(unsigned int nr) const {
-	return sf::Vector2f(rect[0].getGlobalBounds().left,
-			rect[0].getGlobalBounds().top);
+	return sf::Vector2f(rect[nr].getGlobalBounds().left,
+			rect[nr].getGlobalBounds().top);
 }
 
 sf::Vector2f Scianka::getPrevPosition(unsigned int nr) const {
-	return sf::Vector2f(rect[0].getGlobalBounds().left,
-			rect[0].getGlobalBounds().top);
+	return sf::Vector2f(rect[nr].getGlobalBounds().left,
+			rect[nr].getGlobalBounds().top);
 }
 
 void Scianka::updateWszystkieOdniesienia() {

@@ -286,7 +286,7 @@ void Gra::wyswietl() {
 
 	// Napis zwycięstwa: Wygrywa Xyz (wstaw Maks :D)
 	if (etap == KONIEC_RUNDY) {
-		std::string zw = "gz ";
+		std::string zw = "gratsy ";
 		zw += winner;
 
 		koniecText.setString(zw);
@@ -339,15 +339,16 @@ void Gra::updateKamuflaz(Jaszczurka & jaszczurka) {
 
 void Gra::probaKamuflazu(Jaszczurka & gracz, Scianka & scianka) {
 	for (int nr = 0; nr < 9; nr++)
-		// W całości graniczy ze ścianką we właściwym kolorze
-		if (kol_calkowita(gracz, nr, scianka)) {
-			gracz.mozeKamuflowac = true;
-			// Jeśli w tym nie momenie nie kamuflował to teraz włącza się kamuflaż
-			if (gracz.faza_kamuflazu == Gracz::NIEKAMUFLUJE) {
-				gracz.kamuflowany_kolor = scianka.kolor;
-				gracz.faza_kamuflazu = Gracz::KAMUFLUJE;
+		for (int nr2 = 0; nr2 < 9; nr2++)
+			// W całości graniczy ze ścianką we właściwym kolorze
+			if (kol_calkowita(gracz, nr, scianka, nr2)) {
+				gracz.mozeKamuflowac = true;
+				// Jeśli w tym nie momenie nie kamuflował to teraz włącza się kamuflaż
+				if (gracz.faza_kamuflazu == Gracz::NIEKAMUFLUJE) {
+					gracz.kamuflowany_kolor = scianka.kolor;
+					gracz.faza_kamuflazu = Gracz::KAMUFLUJE;
+				}
 			}
-		}
 }
 
 void Gra::kolizjePostacTeren(Gracz & gracz, Teren & teren) {
@@ -451,11 +452,8 @@ void Gra::kolizjePostacTeren(Gracz & gracz, Teren & teren) {
 						< static_cast<int>(teren.getGlobalBounds().top
 								+ teren.getGlobalBounds().height));
 			}
-
 		}	// if (!teren.przenikalnosc)
-
 	}	// for dla nr 0 → 9
-
 }
 
 void Gra::kolizjePostacPostac(Gracz & p1, Gracz & p2) {
@@ -621,7 +619,6 @@ void Gra::kolizjePostacPostac(Gracz & p1, Gracz & p2) {
 					+ p1.getGlobalBounds(nr).width)
 					> static_cast<int>(p2.getGlobalBounds().left));
 		}
-
 	} // for dla nr 0 → 9
 }
 
@@ -755,20 +752,20 @@ bool Gra::kol_ogolnie(Obiekt &ob1, int nr, Obiekt & ob2) {
 	return false;
 }
 
-bool Gra::kol_calkowita(Obiekt &ob1, int nr, Obiekt & ob2) {
+bool Gra::kol_calkowita(Obiekt &ob1, int nr, Obiekt & ob2, int nr2) {
 	// Obszary obu obiektów pokrywają się całkowicie
 	if (static_cast<int>(ob1.getGlobalBounds(nr).left)
-			>= static_cast<int>(ob2.getGlobalBounds().left)
+			>= static_cast<int>(ob2.getGlobalBounds(nr2).left)
 			&& static_cast<int>(ob1.getGlobalBounds(nr).left
 					+ ob1.getGlobalBounds(nr).width)
-					< static_cast<int>(ob2.getGlobalBounds().left
-							+ ob2.getGlobalBounds().width)
+					< static_cast<int>(ob2.getGlobalBounds(nr2).left
+							+ ob2.getGlobalBounds(nr2).width)
 			&& static_cast<int>(ob1.getGlobalBounds(nr).top)
-					>= static_cast<int>(ob2.getGlobalBounds().top)
+					>= static_cast<int>(ob2.getGlobalBounds(nr2).top)
 			&& static_cast<int>(ob1.getGlobalBounds(nr).top
 					+ ob1.getGlobalBounds(nr).height)
 					< static_cast<int>(ob2.getGlobalBounds().top
-							+ ob2.getGlobalBounds().height))
+							+ ob2.getGlobalBounds(nr2).height))
 		return true;
 	return false;
 }

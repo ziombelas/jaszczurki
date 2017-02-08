@@ -110,7 +110,7 @@ private:
 
 	//----------- FUNKCJE POMOCNICZE KOLIZJI 2 OBIEKTÓW -----------
 	bool kol_ogolnie(Obiekt &ob1, int nr, Obiekt & ob2);
-	bool kol_calkowita(Obiekt &ob1, int nr, Obiekt & ob2);
+	bool kol_calkowita(Obiekt &ob1, int nr, Obiekt & ob2, int nr2 = 0);
 	bool kol_dol_do_gory(Obiekt & ob1, int nr, Obiekt & ob2);
 	bool kol_gora_do_dolu(Obiekt & ob1, int nr, Obiekt & ob2);
 	bool kol_prawa_do_lewej(Obiekt & ob1, int nr, Obiekt & ob2);
@@ -119,7 +119,7 @@ private:
 	bool kol_os_y(Obiekt & ob1, int nr, Obiekt & ob2);
 
 	// Powiązanie tablicy na wynik z graczem
-	void powiazGraczaZTablica(Grajacy * grajacy, TablicaNaWynik * tablica);
+	void powiazGraczaZTablica(Grajacy *grajacy, TablicaNaWynik * tablica);
 
 	// Wektor przesunięcia o kombinacje dł./szer. ekranu
 	inline sf::Vector2f pozycjaWzgledemAllSprites(unsigned int nr = 0) {

@@ -28,6 +28,9 @@ public:
 	// Aktualizacja procesów związanych z terenm
 	void update(int mineloCzasu);
 
+	// Pobranie aktualnej prędkości
+	sf::Vector2f getVelocity() const;
+
 	// Pozycja terenu w tej klatce i poprzedniej
 	sf::Vector2f getPosition(unsigned int nr = 0) const;
 	sf::Vector2f getPrevPosition(unsigned int nr = 0) const;
@@ -38,7 +41,6 @@ public:
 
 	// Przeładowanie metody wyświetlania
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-
 private:
 	//************* DANE DOTYCZĄCE WYGLĄDU I ANIMACJI *************
 	// Tekstury terenu w dla różnych krawędzi
@@ -71,7 +73,7 @@ private:
 
 	// ************************ POZOSTAŁE *************************
 	// Poprzednia pozycja
-	sf::Vector2f prevPosition;
+	sf::Vector2f prevPosition[9];
 
 	friend class Gra;
 };

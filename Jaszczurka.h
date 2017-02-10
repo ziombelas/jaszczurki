@@ -19,7 +19,6 @@ public:
 
 	// Aktualizacja procesów związanych z jaszczurką
 	void update(int mineloCzasu);
-
 protected:
 	//***************** DANE DOTYCZĄCE ATAKOWANIA ****************
 	enum FazaAtaku {

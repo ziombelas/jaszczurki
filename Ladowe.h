@@ -8,6 +8,7 @@
 #define LADOWE_H_
 
 #include "Postac.h"
+#include "Teren.h"
 
 class Ladowe: public Postac {
 public:
@@ -42,6 +43,9 @@ protected:
 
 	// Czy spoczywa na gruncie
 	bool maPodloze;
+
+	// Teren, na którym aktualnie spoczywa
+	Teren *terenSpoczynku;
 
 	// Czy uzyskał lotność, która pozwala nie spadać
 	bool lotnosc;

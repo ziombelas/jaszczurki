@@ -174,6 +174,7 @@ void Gra::update() {
 	// Usunięcie znaczników podłoża u graczy
 	for (unsigned int i = 0; i < gracz.size(); i++) {
 		gracz[i]->maPodloze = false;
+		gracz[i]->terenSpoczynku = NULL;
 	}
 
 	// Kolizje gracz - gracz
@@ -377,13 +378,17 @@ void Gra::kolizjePostacTeren(Gracz & gracz, Teren & teren) {
 					&& static_cast<int>(gracz.getPrevGlobalBounds(nr).top
 							+ gracz.getPrevGlobalBounds(nr).height)
 							<= static_cast<int>(teren.getGlobalBounds().top)) {
+				// Postać sukcesywnie spoczywa na terenie
 				gracz.maPodloze = true;
+				gracz.terenSpoczynku = &teren;
 			}
 
 			// Dolna krawędź postaci przekracza krawędź górna w tej klatce,
 			// a w poprzedniej nie przekraczała
 			else if (kol_dol_do_gory(gracz, nr, teren)) {
+				// Postać sukcesywnie spoczywa na terenie
 				gracz.maPodloze = true;
+				gracz.terenSpoczynku = &teren;
 				// Przesuwanie postaci w górę o tyle, aż dół postaci będzie tam gdzie góra terenu.
 				do {
 					gracz.sprite[0].move(0, -1);

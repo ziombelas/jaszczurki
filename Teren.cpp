@@ -1,72 +1,5 @@
 #include "Teren.h"
 
-Teren::~Teren(void) {
-}
-
-sf::Vector2f Teren::getPrevPosition(unsigned int nr) const {
-	return getPosition();
-}
-
-//sf::Vector2f Teren::getPosition(unsigned int nr) {
-//	return sf::Vector2f(sprite.getPosition().x + 1920 * (nr / 3 - 1),
-//			sprite.getPosition().y + 1080 * (nr % 3 - 1));
-//}
-sf::Vector2f Teren::getPosition(unsigned int nr) const {
-	return spriteL.getPosition();
-}
-
-void Teren::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-	// Utworzenie tymczasowego sprite2 - będzie na nim następowało przypisanie
-	sf::Sprite sprite2;
-	int x = spriteL.getPosition().x;
-	int y = spriteL.getPosition().y;
-
-	// Wyświetlenie lewej płytki
-	target.draw(spriteL);
-
-	// Wyświetlenie prawej płytki
-	sprite2 = spriteP;
-	sprite2.setPosition(x + (dlugosc - 1) * (sprite.getGlobalBounds().width),
-			y);
-	target.draw(sprite2);
-
-	sprite2 = sprite;
-	for (int lev = 0; lev < wysokosc; lev++) {
-		// Dla płytek na wierzchu
-		if (lev == 0) {
-			for (int i = 0; i < dlugosc - 2; i++) {
-				sprite2.setPosition(
-						x + (i + 1) * (sprite.getGlobalBounds().width), y);
-				target.draw(sprite2);
-			}
-		} else {
-			// Dla płytek poniżej
-			x = spriteS.getPosition().x;
-			y = spriteS.getPosition().y;
-
-			sprite2 = spriteSL;
-			sprite2.setPosition(spriteSL.getPosition().x,
-					y + (lev - 1) * (sprite.getGlobalBounds().height));
-			target.draw(sprite2);
-
-			sprite2 = spriteS;
-			for (int i = 0; i < dlugosc - 2; i++) {
-				sprite2.setPosition(x + i * (sprite.getGlobalBounds().width),
-						y + (lev - 1) * (sprite.getGlobalBounds().height));
-				target.draw(sprite2);
-			}
-			sprite2 = spriteSP;
-			sprite2.setPosition(spriteSP.getPosition().x,
-					y + (lev - 1) * (sprite.getGlobalBounds().height));
-
-			target.draw(sprite2);
-		}
-	}
-
-	//sprite.setPosition(x, y);
-	//target.draw(sprite);
-}
-
 Teren::Teren(RodzajTerenu rodzaj, int dlugosc, int wysokosc, int x, int y,
 		int specjalne) {
 	velocity = sf::Vector2f(0, 0);
@@ -215,7 +148,14 @@ Teren::Teren(RodzajTerenu rodzaj, int dlugosc, int ax, int ay, int bx, int by,
 			y + sprite.getGlobalBounds().height);
 }
 
+Teren::~Teren(void) {
+}
+
 void Teren::update(int mineloCzasu) {
+	// Zapisanie poprzedniej pozycji
+	for (int i = 0; i < 9; i++)
+		prevPosition[i] = getPosition(i);
+
 	if (velocity != sf::Vector2f(0, 0)) {
 		spriteL.move(velocity.x * (mineloCzasu / 1000.f), 0);
 		if (spriteL.getPosition().x >= punktB.x
@@ -232,6 +172,18 @@ void Teren::update(int mineloCzasu) {
 	}
 }
 
+sf::Vector2f Teren::getVelocity() const {
+	return velocity;
+}
+
+sf::Vector2f Teren::getPrevPosition(unsigned int nr) const {
+	return prevPosition[nr];
+}
+
+sf::Vector2f Teren::getPosition(unsigned int nr) const {
+	return spriteL.getPosition();
+}
+
 sf::FloatRect Teren::getGlobalBounds(unsigned int nr) const {
 	return sf::FloatRect(spriteL.getGlobalBounds().left + tolerancja_lp,
 			spriteL.getGlobalBounds().top + tolerancja_top,
@@ -246,4 +198,56 @@ sf::FloatRect Teren::getPrevGlobalBounds(unsigned int nr) const {
 			(sprite.getGlobalBounds().width) * (dlugosc) - 2 * tolerancja_lp,
 			sprite.getGlobalBounds().height * wysokosc - tolerancja_bot
 					- tolerancja_top);
+}
+
+void Teren::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+	// Utworzenie tymczasowego sprite2 - będzie na nim następowało przypisanie
+	sf::Sprite sprite2;
+	int x = spriteL.getPosition().x;
+	int y = spriteL.getPosition().y;
+
+	// Wyświetlenie lewej płytki
+	target.draw(spriteL);
+
+	// Wyświetlenie prawej płytki
+	sprite2 = spriteP;
+	sprite2.setPosition(x + (dlugosc - 1) * (sprite.getGlobalBounds().width),
+			y);
+	target.draw(sprite2);
+
+	sprite2 = sprite;
+	for (int lev = 0; lev < wysokosc; lev++) {
+		// Dla płytek na wierzchu
+		if (lev == 0) {
+			for (int i = 0; i < dlugosc - 2; i++) {
+				sprite2.setPosition(
+						x + (i + 1) * (sprite.getGlobalBounds().width), y);
+				target.draw(sprite2);
+			}
+		} else {
+			// Dla płytek poniżej
+			x = spriteS.getPosition().x;
+			y = spriteS.getPosition().y;
+
+			sprite2 = spriteSL;
+			sprite2.setPosition(spriteSL.getPosition().x,
+					y + (lev - 1) * (sprite.getGlobalBounds().height));
+			target.draw(sprite2);
+
+			sprite2 = spriteS;
+			for (int i = 0; i < dlugosc - 2; i++) {
+				sprite2.setPosition(x + i * (sprite.getGlobalBounds().width),
+						y + (lev - 1) * (sprite.getGlobalBounds().height));
+				target.draw(sprite2);
+			}
+			sprite2 = spriteSP;
+			sprite2.setPosition(spriteSP.getPosition().x,
+					y + (lev - 1) * (sprite.getGlobalBounds().height));
+
+			target.draw(sprite2);
+		}
+	}
+
+	//sprite.setPosition(x, y);
+	//target.draw(sprite);
 }

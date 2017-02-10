@@ -42,11 +42,11 @@ Mapa1::Mapa1() {
 
 	//******************* ŚCIANKI KAMUFLUJĄCE **********************
 	scianka.push_back(
-			new Scianka(SCIANA_MORSKI, 1920 / 3 * 0, 90, 1920 / 3, 990));
+			new Scianka(SCIANA_MORSKI, 1920 / 3 * 0, 90, 1920 / 3, 1590));
 	scianka.push_back(
-			new Scianka(SCIANA_ZOLC, 1920 / 3 * 1, 90, 1920 / 3, 990));
+			new Scianka(SCIANA_ZOLC, 1920 / 3 * 1, 90, 1920 / 3, 1590));
 	scianka.push_back(
-			new Scianka(SCIANA_FIOLET, 1920 / 3 * 2, 90, 1920 / 3, 990));
+			new Scianka(SCIANA_FIOLET, 1920 / 3 * 2, 90, 1920 / 3, 1590));
 
 	//******************** POZYCJE RESPAWNU ***********************
 	respPos.push_back(sf::Vector2f(500 + 10 * 20 / 2, 230));

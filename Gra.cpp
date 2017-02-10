@@ -627,7 +627,6 @@ void Gra::kolizjePostacMucha(Gracz & gracz, Mucha & mucha) {
 	for (int nr = 0; nr < 9; nr++) {
 		// Sprawdzenie ogólnej kolizji wystarcza by ustalić czy następiło zderzenie
 		// między graczm a przeciwnikiem
-		// TODO kolizja tak, że może zabić kolidując tylko łbem
 		if (kol_ogolnie(gracz, nr, mucha)) {
 			if (gracz.fazaAtaku == Gracz::ATAKUJE) {
 

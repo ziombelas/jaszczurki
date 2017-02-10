@@ -11,18 +11,18 @@ Scianka::Scianka(KolorSciany kolor, int x, int y, int w, int h) {
 	switch (kolor) {
 	case SCIANA_MORSKI: {
 		for (int i = 0; i < 9; i++)
-			rect[i].setFillColor(sf::Color(0, 95, 120, 150));
+			rect[i].setFillColor(sf::Color(0, 95, 120, 157));
 	}
 		break;
 	case SCIANA_ZOLC: {
 		for (int i = 0; i < 9; i++)
-			rect[i].setFillColor(sf::Color(87, 72, 14, 150));
+			rect[i].setFillColor(sf::Color(87, 72, 14, 157));
 
 	}
 		break;
 	case SCIANA_FIOLET: {
 		for (int i = 0; i < 9; i++)
-			rect[i].setFillColor(sf::Color(50, 65, 145, 150));
+			rect[i].setFillColor(sf::Color(50, 65, 145, 157));
 	}
 		break;
 	}
@@ -97,12 +97,12 @@ void Scianka::updateWszystkieOdniesienia() {
 
 	rect[1].setPosition(rect[0].getPosition() + sf::Vector2f(1920, 0));
 	rect[2].setPosition(rect[0].getPosition() + sf::Vector2f(-1920, 0));
-	rect[3].setPosition(rect[0].getPosition() + sf::Vector2f(0, 990));
-	rect[4].setPosition(rect[0].getPosition() + sf::Vector2f(0, -990));
-	rect[5].setPosition(rect[0].getPosition() + sf::Vector2f(1920, 990));
-	rect[6].setPosition(rect[0].getPosition() + sf::Vector2f(-1920, 990));
-	rect[7].setPosition(rect[0].getPosition() + sf::Vector2f(1920, -990));
-	rect[8].setPosition(rect[0].getPosition() + sf::Vector2f(-1920, -990));
+	rect[3].setPosition(rect[0].getPosition() + sf::Vector2f(0, 1590));
+	rect[4].setPosition(rect[0].getPosition() + sf::Vector2f(0, -1590));
+	rect[5].setPosition(rect[0].getPosition() + sf::Vector2f(1920, 1590));
+	rect[6].setPosition(rect[0].getPosition() + sf::Vector2f(-1920, 1590));
+	rect[7].setPosition(rect[0].getPosition() + sf::Vector2f(1920, -1590));
+	rect[8].setPosition(rect[0].getPosition() + sf::Vector2f(-1920, -1590));
 
 }
 void Scianka::draw(sf::RenderTarget &target, sf::RenderStates states) const {

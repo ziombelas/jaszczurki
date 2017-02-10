@@ -1,7 +1,7 @@
 #include "Jaszczurka.h"
 
 Jaszczurka::Jaszczurka() :
-		Ladowe(11, 26, 510, -755) {
+		Ladowe(11, 26, 435, -755) {
 	faza_kamuflazu = NIEKAMUFLUJE;
 
 	fazaAtaku = NIEATAKUJE;
@@ -128,7 +128,7 @@ void Jaszczurka::update(int mineloCzasu) {
 			vel_atak = zwrot * naladowanieAtk * 2.655;
 
 			// Zwalnianie podczas ataku
-			naladowanieAtk -= mineloCzasu * (naladowanieAtk * 1.19 + 4400)
+			naladowanieAtk -= mineloCzasu * (naladowanieAtk * 1.19 + 3400)
 					/ 1000.f;
 
 			// Usunięcie lotności

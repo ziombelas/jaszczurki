@@ -6,9 +6,6 @@ PoleDolacz::PoleDolacz(int x, int y, Input *input) {
 	rect.setSize(sf::Vector2f(350, 800));
 	rect.setPosition(x, y);
 
-//	setSize(sf::Vector2f(350, 800));
-//	setPosition(x, y);
-
 	gotowy = false;
 
 	input->jakPoruszacSprite.setPosition(x + 25, 100);

@@ -12,7 +12,7 @@
 #include "Grajacy.h"
 
 enum ProgramState {
-	MENU, ROZGRYWKA, EKRAN_WYBORU, PROGRAM_END
+	MENU, ROZGRYWKA, EKRAN_WYBORU, INSTRUKCJA, PROGRAM_END
 };
 
 class Settings {
@@ -25,6 +25,7 @@ private:
 
 	friend class EkranWyboru;
 	friend class Gra;
+	friend class PodsumowanieWynikow;
 	friend class Program;
 };
 

@@ -7,8 +7,8 @@ Program::Program(void) {
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
 
-	window.create(sf::VideoMode(1920, 1080), "Jaszczurki", sf::Style::Fullscreen,
-			settings);
+	window.create(sf::VideoMode(1920, 1080), "Jaszczurki",
+			sf::Style::Default, settings);
 
 	state = PROGRAM_END;
 	window.setFramerateLimit(60);
@@ -16,7 +16,6 @@ Program::Program(void) {
 	// Czcionki
 	font_title.loadFromFile("data/fonts/PORKYS.ttf");
 	font_opis.loadFromFile("data/fonts/EncodeSansWide-Black.ttf");
-
 
 //	ifTutorial = false;
 	state = MENU;
@@ -40,14 +39,13 @@ void Program::run() {
 	sf::Text title("Jaszczurki", font_title, 180);
 	title.setStyle(sf::Text::Bold);
 	title.setColor(sf::Color::Green);
-
 	title.setPosition(1920 / 2 - title.getGlobalBounds().width / 2, 30);
 
-	sf::Text opis(L"Aby rozpocząć, wcisnij enter lub A na padzie,", font_opis, 64);
+	sf::Text opis(L"Aby rozpocząć, wcisnij enter lub A na padzie,", font_opis,
+			64);
 	opis.setPosition(1920 / 2 - opis.getGlobalBounds().width / 2, 360);
 
-	sf::Text tutorialtext(
-			L"żeby włączyć instrukcję wciśnij T lub Y na padzie.",
+	sf::Text tutorialtext(L"żeby włączyć instrukcję wciśnij T lub Y na padzie.",
 			font_opis, 48);
 	tutorialtext.setPosition(
 			1920 / 2 - tutorialtext.getGlobalBounds().width / 2, 550);
@@ -74,6 +72,16 @@ void Program::run() {
 								&& event.key.code == sf::Keyboard::Return)) {
 //					ifTutorial = false;
 					state = EKRAN_WYBORU;
+				}
+
+				// Wcisnięcie Y na padzie albo klawisza T
+				else if (sf::Joystick::isButtonPressed(0, 2)
+						|| sf::Joystick::isButtonPressed(1, 2)
+						|| sf::Joystick::isButtonPressed(2, 2)
+						|| sf::Joystick::isButtonPressed(3, 2)
+						|| (event.type == sf::Event::KeyPressed
+								&& event.key.code == sf::Keyboard::T)) {
+					state = INSTRUKCJA;
 				}
 			}
 
@@ -118,6 +126,17 @@ void Program::run() {
 			rozgrywka.run();
 
 			// Po opuszczeniu rozgrywki program wraca do menu
+			state = MENU;
+		}
+			break;
+		case INSTRUKCJA: {
+			// Sworzenie instrukcji
+			Instrukcja instrukcja(window);
+
+			// Przenisienie pętli głownej → instrukcja
+			instrukcja.run();
+
+			// Po opuszczeniu instrukcji program wraca do menu
 			state = MENU;
 		}
 			break;

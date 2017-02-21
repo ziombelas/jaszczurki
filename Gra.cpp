@@ -1,6 +1,6 @@
 #include "Gra.h"
 
-Gra::Gra(sf::RenderWindow &window, Settings * ustawienia, ProgramState * state,
+Gra::Gra(sf::RenderWindow &window, Settings *ustawienia, ProgramState *state,
 		int runda) {
 	this->window = &window;
 	this->state = state;
@@ -354,12 +354,6 @@ void Gra::probaKamuflazu(Jaszczurka & gracz, Scianka & scianka) {
 }
 
 void Gra::kolizjePostacTeren(Gracz & gracz, Teren & teren) {
-	/*  TODO NAPISAĆ TO NORMALNIE jak i poniższe dla postac-postac
-	 * Kolizje wybranej postaci z wybranym terenem.
-	 * Wszystkie kolizje następują w pętli w której pobierana
-	 * jest każda z czterech możliwych pozycji postaci określona
-	 */
-
 	for (int nr = 0; nr < 9; nr++) {
 		// PRZYPADEK 1: KOLIZJA DO GÓRY - nogami w glebę.
 		// Sprawdzane jest czy aktualna krawędź dolna postaci nie spowodowała
@@ -557,6 +551,7 @@ void Gra::kolizjePostacPostac(Gracz & p1, Gracz & p2) {
 								new Punkty(7, p1.grajacy->tablicaNaWynik,
 										p2.pozycjaWzgledemMonitora().x,
 										p2.pozycjaWzgledemMonitora().y));
+						p1.grajacy->upolowalJaszczurke();
 					}
 					// Drugi ma więcej mocy
 					else if (p2.naladowanieAtk > p1.naladowanieAtk) {
@@ -566,6 +561,7 @@ void Gra::kolizjePostacPostac(Gracz & p1, Gracz & p2) {
 								new Punkty(7, p2.grajacy->tablicaNaWynik,
 										p1.pozycjaWzgledemMonitora().x,
 										p1.pozycjaWzgledemMonitora().y));
+						p2.grajacy->upolowalJaszczurke();
 					}
 				}
 
@@ -581,6 +577,7 @@ void Gra::kolizjePostacPostac(Gracz & p1, Gracz & p2) {
 							new Punkty(7, p2.grajacy->tablicaNaWynik,
 									p1.pozycjaWzgledemMonitora().x,
 									p1.pozycjaWzgledemMonitora().y));
+					p2.grajacy->upolowalJaszczurke();
 				}
 
 				// Pierwsza atakuje, druga bezbronna
@@ -595,6 +592,7 @@ void Gra::kolizjePostacPostac(Gracz & p1, Gracz & p2) {
 							new Punkty(7, p1.grajacy->tablicaNaWynik,
 									p2.pozycjaWzgledemMonitora().x,
 									p2.pozycjaWzgledemMonitora().y));
+					p1.grajacy->upolowalJaszczurke();
 
 				}
 
@@ -640,6 +638,8 @@ void Gra::kolizjePostacMucha(Gracz & gracz, Mucha & mucha) {
 						new Punkty(2, gracz.grajacy->tablicaNaWynik,
 								mucha.pozycjaWzgledemMonitora().x,
 								mucha.pozycjaWzgledemMonitora().y));
+
+				gracz.grajacy->upolowalMuche();
 
 				// Skasowanie i zdjęcie starej muchy
 				delete &mucha;

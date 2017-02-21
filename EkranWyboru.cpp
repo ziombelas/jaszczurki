@@ -1,6 +1,6 @@
 #include "EkranWyboru.h"
 
-EkranWyboru::EkranWyboru(sf::RenderWindow &window, Settings * ustawienia,
+EkranWyboru::EkranWyboru(sf::RenderWindow & window, Settings *ustawienia,
 		ProgramState & state) {
 
 	// Inicjalizacja ekranu wyboru - dostarczenia adresów okna, ustawień, stanu gry
@@ -61,10 +61,9 @@ EkranWyboru::~EkranWyboru(void) {
 }
 
 void EkranWyboru::run() {
-	// *********************   PETLA GLOWNA   ************************ //
+	// *********************   PĘTLA GŁÓWNA   ************************ //
 	while (!exit) {
 		while (window->pollEvent(event)) {
-			//eventPolled = true;
 
 			// Wcisnięcie ESC
 			for (int i = 0; i < 6; i++)

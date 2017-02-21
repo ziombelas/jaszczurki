@@ -7,13 +7,15 @@
 
 #include "Rozgrywka.h"
 
-Rozgrywka::Rozgrywka(sf::RenderWindow &window, Settings * ustawienia,
+Rozgrywka::Rozgrywka(sf::RenderWindow & window, Settings *ustawienia,
 		ProgramState & state) {
 	this->window = &window;
 	this->ustawienia = ustawienia;
 	this->state = &state;
 
 	gra = NULL;
+	podsumowanie = NULL;
+
 	runda = 1;
 }
 
@@ -22,7 +24,7 @@ Rozgrywka::~Rozgrywka() {
 }
 
 void Rozgrywka::run() {
-	while (runda <= 3) {
+	while (runda <= 5) {
 		gra = new Gra(*window, ustawienia, state, runda);
 
 		// Przeniesienie pętli głownej → game
@@ -36,5 +38,12 @@ void Rozgrywka::run() {
 		// Wyjście, jeśli rozgrywka została zakończona
 		if (*state != ROZGRYWKA)
 			break;
+	}
+
+	// Pokazanie ekranu podsumowanie, jeżeli rozgrywka przebiegła do końca
+	if (*state == ROZGRYWKA) {
+		podsumowanie = new PodsumowanieWynikow(*window, ustawienia, state);
+		podsumowanie->run();
+		delete podsumowanie;
 	}
 }

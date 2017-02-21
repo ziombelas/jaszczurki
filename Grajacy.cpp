@@ -4,6 +4,8 @@ Grajacy::Grajacy(Input input, Imie imie) {
 	this->input = new Input(input);
 	this->imie = imie;
 	wynik = 0;
+	upolowaneMuchy = 0;
+	upolowaneJaszczurki = 0;
 	tablicaNaWynik = NULL;
 }
 
@@ -23,7 +25,22 @@ int Grajacy::getWynik() {
 	return wynik;
 }
 
-void Grajacy::zwiekszWynik(int ile)
-{
+int Grajacy::getUpolowaneMuchy() {
+	return upolowaneMuchy;
+}
+
+int Grajacy::getUpolowaneJaszczurki() {
+	return upolowaneJaszczurki;
+}
+
+void Grajacy::zwiekszWynik(int ile) {
 	wynik += ile;
+}
+
+void Grajacy::upolowalMuche() {
+	upolowaneMuchy++;
+}
+
+void Grajacy::upolowalJaszczurke() {
+	upolowaneJaszczurki++;
 }

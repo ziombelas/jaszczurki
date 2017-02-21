@@ -12,6 +12,7 @@
 
 #include "Rozgrywka.h"
 #include "EkranWyboru.h"
+#include "Instrukcja.h"
 
 using namespace std;
 

@@ -24,13 +24,19 @@ public:
 	Imie & getImie();
 	Input & getInput();
 	int getWynik();
+	int getUpolowaneMuchy();
+	int getUpolowaneJaszczurki();
 
 	void zwiekszWynik(int ile);
+	void upolowalMuche();
+	void upolowalJaszczurke();
 
 	TablicaNaWynik *tablicaNaWynik;
 private:
 	Imie imie;
 	int wynik;
+	int upolowaneMuchy;
+	int upolowaneJaszczurki;
 	Input *input;
 };
 

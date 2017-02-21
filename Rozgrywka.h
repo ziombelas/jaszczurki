@@ -8,13 +8,14 @@ todo opis klasy Rozgrywka
 #define ROZGRYWKA_H_
 
 #include "Gra.h"
+#include "PodsumowanieWynikow.h"
 
 class Rozgrywka {
 public:
 	Rozgrywka(sf::RenderWindow &window, Settings *ustawienia, ProgramState &state);
 	~Rozgrywka();
 
-	// Główna procedura z pętlą głowną
+	// Uruchomienie pętli głównej wewnątrz Rozgrywki
 	void run();
 private:
 	//****************** ELEMENTY ROZGRYWKI ******************
@@ -22,6 +23,9 @@ private:
 
 	// Tworzona dynamicznie Gra
 	Gra *gra;
+
+	// Tworzone dynamicznie PodsumowanieWynikow
+	PodsumowanieWynikow *podsumowanie;
 
 	//****************** DOTYCZY PĘTLI PROGRAMU **************
 	ProgramState *state;

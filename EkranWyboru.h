@@ -15,11 +15,11 @@
 
 class EkranWyboru {
 public:
-	EkranWyboru(sf::RenderWindow &window, Settings *ustawienia,
+	EkranWyboru(sf::RenderWindow & window, Settings *ustawienia,
 			ProgramState & state);
 	~EkranWyboru();
 
-	// Głowna procedura z pętlą głowną
+	// Uruchomienie pętli głównej wewnątrz EkranuWyboru
 	void run();
 private:
 	//************** ELEMENTY EKRANU WYBORU **************

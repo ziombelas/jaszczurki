@@ -45,7 +45,7 @@ void PodsumowanieWynikow::run() {
 		imie[i].setPosition(50, i * 155 + 300);
 
 		// Prostokąty z punktami każdego z graczy
-		rectPunkty[i].setPosition(450, i * 155 + 300 + 15);
+		rectPunkty[i].setPosition(450, i * 155 + 300 + 10);
 		rectPunkty[i].setSize(
 				sf::Vector2f(ustawienia->grajacy[i]->getWynik() * 9, 120));
 		if (ustawienia->grajacy[i]->getImie().getPlec() == FACET)

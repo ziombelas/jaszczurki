@@ -105,8 +105,8 @@ private:
 	// Kolizje postaci i muchy
 	void kolizjePostacMucha(Gracz & gracz, Mucha & mucha);
 
-	// Aktualizacja torów much
-	void updatePrzeciwnikow(Mucha & mucha);
+	// Aktualizacja much
+	void updateMuch(Mucha & mucha);
 
 	//----------- FUNKCJE POMOCNICZE KOLIZJI 2 OBIEKTÓW -----------
 	bool kol_ogolnie(Obiekt &ob1, int nr, Obiekt & ob2);

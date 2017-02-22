@@ -1,5 +1,7 @@
 #include "Gra.h"
 
+
+
 Gra::Gra(sf::RenderWindow &window, Settings *ustawienia, ProgramState *state,
 		int runda) {
 	this->window = &window;
@@ -165,7 +167,7 @@ void Gra::update() {
 	// Update przeciwników (much)
 	if (etap != ODLICZANIE_DO_STARTU)
 		for (unsigned int i = 0; i < mucha.size(); i++)
-			updatePrzeciwnikow(*mucha[i]);
+			updateMuch(*mucha[i]);
 
 	if (etap != ODLICZANIE_DO_STARTU)
 		for (unsigned int i = 0; i < gracz.size(); i++)
@@ -655,7 +657,7 @@ void Gra::kolizjePostacMucha(Gracz & gracz, Mucha & mucha) {
 	} // for dla nr 0 → 9
 }
 
-void Gra::updatePrzeciwnikow(Mucha & mucha) {
+void Gra::updateMuch(Mucha & mucha) {
 // Sprawdzenie czy udało się osiągnać już pozycję wylosowaną jako dest
 	if ((mucha.getPosition().x > mucha.dest.x && mucha.czyWiecejX == 1
 			&& mucha.getPosition().y > mucha.dest.y && mucha.czyWiecejY == 1)
@@ -676,10 +678,11 @@ void Gra::updatePrzeciwnikow(Mucha & mucha) {
 
 			// Losowanie nowej pozycji
 			mucha.nadajCelLotu();
-			// sprawdzenie dla 10 odcinków między akt. pozycją a celem
+
+			// sprawdzenie dla 7 odcinków między akt. pozycją a celem
 			sf::Vector2f wektorPrzesuniecia = mucha.dest - mucha.getPosition();
-			for (int z = 1; z < 5; z++) {
-				sf::Vector2f odcinekProbny = wektorPrzesuniecia * (z / 5.f);
+			for (int z = 1; z < 7; z++) {
+				sf::Vector2f odcinekProbny = wektorPrzesuniecia * (z / 7.f);
 
 				for (int nr = 0; nr < 9; nr++) {
 					// Jeżeli zawadza to terenom na mapie - zaznacza kolizijność
@@ -728,11 +731,8 @@ void Gra::updatePrzeciwnikow(Mucha & mucha) {
 			}
 			// Jeśli nie daje się uniknąć kolizji z terenem to niech zostanie ten dest
 			proby++;
-			if (proby > 15)
+			if (proby > 20)
 				break;
-			// TODO zrobić tak, żeby przy przekraczaniu krawędzi ekranu skrypt działał
-			// teź opracować algorytm żeby nie lagowało a mogło zrobić troche więcej prób
-			// np. niepowatrzanie sprawdzania dla terenóœ które i tak eni bd kolidowały
 		} while (!bezkolizijnosc);
 	}
 	mucha.update(mineloCzasu);

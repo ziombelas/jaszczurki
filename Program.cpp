@@ -8,7 +8,7 @@ Program::Program(void) {
 	settings.antialiasingLevel = 8;
 
 	window.create(sf::VideoMode(1920, 1080), "Jaszczurki",
-			sf::Style::Default, settings);
+			sf::Style::Fullscreen, settings);
 
 	state = PROGRAM_END;
 	window.setFramerateLimit(60);

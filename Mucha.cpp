@@ -57,8 +57,11 @@ void Mucha::nadajCelLotu() {
 	 * wektora odległości do celu.
 	 */
 
-	// Wylosowanie kątu pod jakim będzie lecieć
-	float kat = std::rand() % 360;
+	// Wylosowanie kątu pod jakim będzie lecieć, pominięcie kątów prostych
+	float kat;
+	do {
+		kat = std::rand() % 360;
+	} while (kat == 0 || kat == 90 || kat == 180 || kat == 270);
 
 	// Wylosowanie punktu docelowego
 	dest = sf::Vector2f(
@@ -76,19 +79,18 @@ void Mucha::nadajCelLotu() {
 	vel_x = vel * cos(kat * M_PI / 180.0);
 	vel_y = vel * sin(kat * M_PI / 180.0);
 
-	// todo poprawiony CzyWiecejXY czyli spojrzenie matematyczne na to
-	// i ewentualnie wyrzucenie lub zastapienie czymm prostszym.
-	// Ostatecznie na siłe bo jest problem tylko z 0, 90, 180, 270 stopni.
+	// W zależności od kątu ustalenie czy będzie musiał przekroczyć osie x i y
+	// na plusie czy na minusie
 	if (kat >= 0 && kat < 90) {
 		czyWiecejX = 1;
 		czyWiecejY = 1;
-	} else if (kat >= 90 && kat < 180) {
+	} else if (kat > 90 && kat < 180) {
 		czyWiecejX = -1;
 		czyWiecejY = 1;
-	} else if (kat >= 180 && kat < 270) {
+	} else if (kat > 180 && kat < 270) {
 		czyWiecejX = -1;
 		czyWiecejY = -1;
-	} else if (kat >= 270 && kat < 360) {
+	} else if (kat > 270 && kat < 360) {
 		czyWiecejX = 1;
 		czyWiecejY = -1;
 	}

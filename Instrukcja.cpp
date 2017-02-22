@@ -97,7 +97,8 @@ void Instrukcja::run() {
 	linia[17].setString(L"Jeśli jaszczurka zostanie zaatakowana umiera do końca rundy, a sterujący");
 	linia[18].setString(L"atakującą jaszczurką otrzymuje 7 punktów. Można też polować na muchy za 2 pkt.");
 	linia[19].setString(L"");
-	linia[20].setString(L"Gra kończy się po 5 rundach bądź po zdobyciu przez kogoś 80 punktów.");
+	linia[20].setString(L"Gra kończy się po 5 rundach, gl hf.");
+
 	// *********************   PĘTLA GŁÓWNA   ************************ //
 	while (!exit) {
 		while (window->pollEvent(event)) {

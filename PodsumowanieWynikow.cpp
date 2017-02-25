@@ -18,7 +18,8 @@ PodsumowanieWynikow::PodsumowanieWynikow(sf::RenderWindow &window,
 	font_title.loadFromFile("data/fonts/PORKYS.ttf");
 	font.loadFromFile("data/fonts/EncodeSansWide-Black.ttf");
 
-	jaszczurkaUpolowana_texture.loadFromFile("data/podsumowanie/upolowaneJaszczurki.png");
+	jaszczurkaUpolowana_texture.loadFromFile(
+			"data/podsumowanie/upolowaneJaszczurki.png");
 	muchaUpolowana_texture.loadFromFile("data/podsumowanie/upolowaneMuchy.png");
 
 	exit = false;
@@ -83,15 +84,17 @@ void PodsumowanieWynikow::run() {
 	while (!exit) {
 		while (window->pollEvent(event)) {
 
-			// Wcisnięcie ESC
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)
-					&& event.type == sf::Event::KeyPressed) {
-				exit = true;
+			// Wcisnięcie ESC / alt + f4 / B u któregoś z grających
+			for (int unsigned i = 0; i < ustawienia->grajacy.size(); i++) {
+				if (ustawienia->grajacy[i]->getInput().isPressed(ster_esc)) {
+					*state = MENU;
+					exit = true;
+				}
 			}
-		}
-		window->clear();
-		wyswietl();
-	} // ************************************************************ //
+			window->clear();
+			wyswietl();
+		} // ************************************************************ //
+	}
 }
 
 void PodsumowanieWynikow::wyswietl() {

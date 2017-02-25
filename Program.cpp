@@ -56,7 +56,7 @@ void Program::run() {
 		case MENU: {
 			while (window.pollEvent(event)) {
 
-				// Wcisniecie ESC lub przycisk X
+				// Wcisnięcie ESC lub zamknięcie okna
 				if (event.type == sf::Event::Closed
 						|| (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)
 								&& event.type == sf::Event::KeyPressed)) {

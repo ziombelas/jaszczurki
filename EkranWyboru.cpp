@@ -65,15 +65,13 @@ void EkranWyboru::run() {
 	while (!exit) {
 		while (window->pollEvent(event)) {
 
-			// Wcisnięcie ESC
-			for (int i = 0; i < 6; i++)
-				if (input[i]->isPressed(ster_esc)) {
-
-//			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)
-//					&& event.type == sf::Event::KeyPressed) {
-					*state = MENU;
-					exit = true;
-				}
+			// Wcisnięcie ESC lub zamknięcie okna
+			if (event.type == sf::Event::Closed
+					|| (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)
+							&& event.type == sf::Event::KeyPressed)) {
+				*state = MENU;
+				exit = true;
+			}
 
 			// Dołączanie do gry za pomocą klawiatury lub pada
 			if (pole.size() < 4)

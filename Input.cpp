@@ -110,6 +110,10 @@ bool Input::isPressed(ktoryKlawisz jaki) {
 	}
 	// DOTYCZY STEROWANIA PADEM
 	else if (rodzajInputu == PAD) {
+		// Natychmiastowe zwrócenie false dla niepodłączonego kontrolera
+		if (!sf::Joystick::isConnected(id))
+			return false;
+
 		switch (jaki) {
 		case ster_lewo: {
 			if (sf::Joystick::getAxisPosition(id, sf::Joystick::X) < -50)
@@ -142,7 +146,7 @@ bool Input::isPressed(ktoryKlawisz jaki) {
 		}
 			break;
 		case ster_esc: {
-			if (sf::Joystick::isButtonPressed(id, 5))
+			if (sf::Joystick::isButtonPressed(id, 1))
 				return true;
 		}
 			break;

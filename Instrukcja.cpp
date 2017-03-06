@@ -1,14 +1,7 @@
-/*
- * Instrukcja.cpp
- *
- *  Created on: 14 lut 2017
- *      Author: maks
- */
-
 #include "Instrukcja.h"
 
 Instrukcja::Instrukcja(sf::RenderWindow & window) {
-	// Inicjalizacja instrukcji - dostarczenia adresu okna
+
 	this->window = &window;
 
 	font.loadFromFile("data/fonts/EncodeSansWide-Black.ttf");
@@ -85,17 +78,22 @@ void Instrukcja::run() {
 	linia[10].setString(
 			L"Aby zaatakować naciśnij przycisk ataku. Zanim puścisz przycisk ataku najlepiej");
 	linia[11].setString(
-				L"przytrzymuj go przez chwilę. Czym dłużej będziesz trzymał przycisk ataku tym");
+			L"przytrzymuj go przez chwilę. Czym dłużej będziesz trzymał przycisk ataku tym");
 	linia[12].setString(
 			L"mocniej twoja jaszczurka zaatakuje. Czym mocniej naładowany jest atak tym bardziej ");
-	linia[13].setString(L"czerwony odcień przybierze jaszczurka. Gdy puścisz przycisk jaszczurka");
-	linia[14].setString(L"wystrzeli naprzód. Warto dodać, że można przygotowywać atak pozostając");
-	linia[15].setString(L"ciągle w kamuflażu - jaszczurka ujawni się dopiero gdy puścisz atak.");
+	linia[13].setString(
+			L"czerwony odcień przybierze jaszczurka. Gdy puścisz przycisk jaszczurka");
+	linia[14].setString(
+			L"wystrzeli naprzód. Warto dodać, że można przygotowywać atak pozostając");
+	linia[15].setString(
+			L"ciągle w kamuflażu - jaszczurka ujawni się dopiero gdy puścisz atak.");
 
 	linia[16].setString(L"");
 
-	linia[17].setString(L"Jeśli jaszczurka zostanie zaatakowana umiera do końca rundy, a sterujący");
-	linia[18].setString(L"atakującą jaszczurką otrzymuje 7 punktów. Można też polować na muchy za 2 pkt.");
+	linia[17].setString(
+			L"Jeśli jaszczurka zostanie zaatakowana umiera do końca rundy, a sterujący");
+	linia[18].setString(
+			L"atakującą jaszczurką otrzymuje 7 punktów. Można też polować na muchy za 2 pkt.");
 	linia[19].setString(L"");
 	linia[20].setString(L"Gra kończy się po 5 rundach, gl hf.");
 
@@ -103,11 +101,18 @@ void Instrukcja::run() {
 	while (!exit) {
 		while (window->pollEvent(event)) {
 
-			// Wcisnięcie ESC
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)
-					&& event.type == sf::Event::KeyPressed) {
+			// Wcisnięcie ESC lub  alt + f4 lub B na dowolnym padzie
+			if (event.type == sf::Event::Closed
+					|| (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)
+							&& event.type == sf::Event::KeyPressed)
+					|| (sf::Joystick::isButtonPressed(0, 1)
+							|| sf::Joystick::isButtonPressed(1, 1)
+							|| sf::Joystick::isButtonPressed(2, 1)
+							|| sf::Joystick::isButtonPressed(3, 1))) {
+
 				exit = true;
 			}
+
 		}
 		window->clear();
 		wyswietl();
@@ -120,6 +125,7 @@ void Instrukcja::wyswietl() {
 	for (int i = 0; i < 21; i++)
 		window->draw(linia[i]);
 
+	// Wyświetlenie ilustracji do instrukcji
 	for (int i = 0; i < 8; i++) {
 		window->draw(ilustracja[i]);
 	}

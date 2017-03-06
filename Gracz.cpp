@@ -30,8 +30,6 @@ Gracz::Gracz(sf::Vector2f startVec, Grajacy *grajacy) {
 
 	}
 
-	//ucinanie
-	//sprite.setTextureRect(sf::IntRect(60, 60, 32, 32));
 }
 
 Gracz::~Gracz() {

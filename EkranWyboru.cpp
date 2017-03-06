@@ -1,9 +1,8 @@
 #include "EkranWyboru.h"
 
-EkranWyboru::EkranWyboru(sf::RenderWindow & window, Settings *ustawienia,
+EkranWyboru::EkranWyboru(sf::RenderWindow & window, Ustawienia *ustawienia,
 		ProgramState & state) {
 
-	// Inicjalizacja ekranu wyboru - dostarczenia adresów okna, ustawień, stanu gry
 	this->window = &window;
 	this->ustawienia = ustawienia;
 	this->state = &state;
@@ -20,7 +19,7 @@ EkranWyboru::EkranWyboru(sf::RenderWindow & window, Settings *ustawienia,
 		zajetoscInputu[i] = false;
 	}
 
-	// Utworzenie wszystkich inputów
+	// Utworzenie wszystkich możliwych inputów
 	input[0] = new Input(Input::KLAWA, 0, event);
 	input[1] = new Input(Input::KLAWA, 1, event);
 	input[2] = new Input(Input::PAD, 0, event);
@@ -49,7 +48,7 @@ EkranWyboru::EkranWyboru(sf::RenderWindow & window, Settings *ustawienia,
 	exit = false;
 }
 
-EkranWyboru::~EkranWyboru(void) {
+EkranWyboru::~EkranWyboru() {
 	// Skasowanie każdego z dostępnych inputów utworzonych na rzecz ekranu wyboru
 	for (int i = 0; i < 6; i++)
 		delete input[i];
@@ -113,6 +112,7 @@ void EkranWyboru::run() {
 					pole[i]->nastepneImie();
 			}
 
+		// Aktualizacja wszystkich inputów
 		for (int i = 0; i < 6; i++)
 			input[i]->update();
 

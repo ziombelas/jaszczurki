@@ -18,19 +18,32 @@ PoleDolacz::PoleDolacz(int x, int y, Input *input) {
 	imie.push_back(new Imie(L"Szymon", FACET));
 	imie.push_back(new Imie(L"Jurek", FACET));
 	imie.push_back(new Imie(L"Wojtek", FACET));
+	imie.push_back(new Imie(L"Krzysiek", FACET));
 	imie.push_back(new Imie(L"Maciek", FACET));
+	imie.push_back(new Imie(L"Natalia", BABKA));
+	imie.push_back(new Imie(L"Marysia", BABKA));
 	imie.push_back(new Imie(L"Wera", BABKA));
 	imie.push_back(new Imie(L"Styku", FACET));
 	imie.push_back(new Imie(L"Tosia", BABKA));
-	imie.push_back(new Imie(L"Piotrek", FACET));
-	imie.push_back(new Imie(L"Samanta", BABKA));
-	imie.push_back(new Imie(L"Biały", FACET));
 	imie.push_back(new Imie(L"Kasia", BABKA));
 	imie.push_back(new Imie(L"Mateusz", FACET));
-	imie.push_back(new Imie(L"Sum", FACET));
+	imie.push_back(new Imie(L"Bartek", FACET));
+	imie.push_back(new Imie(L"Kuba", FACET));
+	imie.push_back(new Imie(L"Zuzia", BABKA));
+	imie.push_back(new Imie(L"Piotrek", FACET));
+	imie.push_back(new Imie(L"Staś", FACET));
+	imie.push_back(new Imie(L"Franek", FACET));
+	imie.push_back(new Imie(L"Hania", BABKA));
 	imie.push_back(new Imie(L"Daniela", BABKA));
 	imie.push_back(new Imie(L"Mikser", FACET));
+	imie.push_back(new Imie(L"Samanta", BABKA));
+	imie.push_back(new Imie(L"Biały", FACET));
+	imie.push_back(new Imie(L"Trenie", FACET));
+	imie.push_back(new Imie(L"Emilka", BABKA));
+	imie.push_back(new Imie(L"Zabiel", FACET));
 	imie.push_back(new Imie(L"Eddie", FACET));
+	imie.push_back(new Imie(L"Guzol", FACET));
+	imie.push_back(new Imie(L"Paulina", BABKA));
 	imie.push_back(new Imie(L"Domson", FACET));
 
 	nr_imiona = 0;
@@ -73,21 +86,13 @@ bool PoleDolacz::wybranoImie() {
 	return false;
 }
 
-bool PoleDolacz::wybranoKolor() {
-	if (nr_koloru != 0)
-		return true;
-	return false;
-}
-
 void PoleDolacz::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 	target.draw(rect);
+
+	// Ilustracja jak sterować danym inputem
 	target.draw(input->jakPoruszacSprite);
-	//target.draw(imieSprite);
 
-	// Wyświetlenie imienia
-//	target.draw(*imie[nr_imiona]);
-
-// Narysowanie strzałek do wybierania
+	// Narysowanie strzałek do wybierania
 	target.draw(textArrows);
 	target.draw(wyswietlaneImie);
 
@@ -99,21 +104,11 @@ void PoleDolacz::update() {
 	else
 		rect.setFillColor(sf::Color(160, 160, 170, 255));
 
-//
-//	imieSprite.setString(imie[nr_imiona]);
-//	if (wybranoImie == false)
-//		imieSprite.setString("Wybierz imie X / B");
-//	imieSprite.setFont(font);
-//	imieSprite.setCharacterSize(56);
-//	imieSprite.setColor(sf::Color::Red);
-//	imieSprite.setPosition(x + 350 / 2 - imieSprite.getGlobalBounds().width / 2,
-//	y + 500);
-
-//imieSprite.setString(imie[nr_imiona]);
-
 	wyswietlaneImie.setString(imie[nr_imiona]->get_c_str());
 	wyswietlaneImie.setFont(font);
 	wyswietlaneImie.setCharacterSize(56);
+
+	// W zależności od płci czerwony/różowy kolor
 	if (imie[nr_imiona]->getPlec() == FACET)
 		wyswietlaneImie.setColor(sf::Color(255, 0, 30));
 	else if (imie[nr_imiona]->getPlec() == BABKA)

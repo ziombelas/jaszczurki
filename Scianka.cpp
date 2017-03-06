@@ -27,7 +27,7 @@ Scianka::Scianka(KolorSciany kolor, int x, int y, int w, int h) {
 		break;
 	}
 
-	predkosc_na_sek = 29.25;
+	predkosc_na_sek = 22;
 	updateWszystkieOdniesienia();
 }
 
@@ -36,7 +36,7 @@ Scianka::~Scianka(void) {
 
 void Scianka::update(int mineloCzasu) {
 	// Poruszanie się
-	rect[0].move(predkosc_na_sek * (mineloCzasu / 1000.0), 0);
+	rect[0].move(predkosc_na_sek * (mineloCzasu / 1000.f), 0);
 
 	// Ustawienie wszystkich odniesień na nowe pozycje
 	updateWszystkieOdniesienia();

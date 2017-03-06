@@ -1,5 +1,6 @@
 /* Jest to pole, które pojawia się w ekranie wyboru po tym
- * jak dołączy któryś z graczy. Wybiera się imię, kolor i czcionkę.
+ * jak dołączy któryś z graczy przez wciśnięcie akceptacji.
+ * Wybiera się tu imię.
  */
 
 #ifndef POLEDOLACZ_H_
@@ -19,10 +20,20 @@ public:
 	void nastepneImie();
 
 	bool wybranoImie();
-	bool wybranoKolor();
 
+	void update();
 private:
-	//**************** ELEMENTY POLA DOLACZANIA *****************
+	//************** ELEMENTY POLA DOŁĄCZ **************
+	std::vector<Imie*> imie;
+
+	unsigned int nr_imiona;
+
+	bool gotowy;
+
+	// Urządzenia wejścia, którym steruje gracz
+	Input *input;
+
+	//**************** ELEMENTY GRAFICZNE *****************
 	sf::RectangleShape rect;
 
 	sf::Sprite jakPoruszacSprite;
@@ -32,18 +43,6 @@ private:
 
 	sf::Text wyswietlaneImie;
 	sf::Text textArrows;
-
-	//************** DOTYCZY WYBORU IMIENIA**************
-	std::vector<Imie*> imie;
-
-	int nr_imiona, nr_koloru;
-
-	bool gotowy;
-
-	// Urządzenia wejścia, którym steruje gracz
-	Input *input;
-
-	void update();
 
 	friend class EkranWyboru;
 };

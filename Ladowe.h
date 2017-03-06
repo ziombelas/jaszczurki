@@ -1,5 +1,5 @@
 /*
- * Lądowe postacie, w tym momencie tylko Jaszczurka.
+ * Lądowe postacie (w tym momencie tylko Jaszczurka).
  * W konstruktorze należy podać stałe odpowiadające za prędkość poruszania
  * się i skoku (poza informacjami dla konstruktora Postaci).
  */
@@ -58,7 +58,7 @@ protected:
 		return vel_grawitacja + vel_skok + vel_odpych_y;
 	}
 
-	//-------- DOTYCZY SAMEGO SKAKANIA ------
+	//----------- DOTYCZY SAMEGO SKAKANIA ---------
 	// Stała prędkość skoku, z którą wybija się w górę
 	const float vel_skok_const;
 

@@ -13,8 +13,8 @@
 #include "Gracz.h"
 #include "Mucha.h"
 #include "Mapa1.h"
-#include "Settings.h"
 #include "Punkty.h"
+#include "Ustawienia.h"
 
 class Gra {
 public:
@@ -22,15 +22,15 @@ public:
 		ODLICZANIE_DO_STARTU, KONIEC_RUNDY, CIAGLE_GRAMY
 	};
 
-	Gra(sf::RenderWindow &window, Settings * ustawienia, ProgramState *state,
+	Gra(sf::RenderWindow &window, Ustawienia *ustawienia, ProgramState *state,
 			int runda);
 	~Gra();
 
-	// Główna procedura z pętlą głowną
+	// Uruchomienie pętli głównej wewnątrz Gra
 	void run();
 
-	// Oznacza wyłączenie gry i powrót do menu
-	bool exit;
+	void update();
+	void wyswietl();
 private:
 	//******************* ELEMENTY GRY *********************
 	// Gracze
@@ -70,11 +70,8 @@ private:
 	// Stoper mierzący czas od uruchomienia gry aż do startu
 	sf::Clock startTimer;
 
-	void update();
-	void wyswietl();
-
 	// -----------------  POBIERANE Z MAPY -----------------
-	// Procedura pobrania tych elementów
+	// Procedura pobrania poniższych elementów z mapy
 	void pobierzMape(Mapa & mapa);
 
 	// Tereny gry
@@ -119,7 +116,7 @@ private:
 	bool kol_os_y(Obiekt & ob1, int nr, Obiekt & ob2);
 
 	// Powiązanie tablicy na wynik z graczem
-	void powiazGraczaZTablica(Grajacy *grajacy, TablicaNaWynik * tablica);
+	void powiazGraczaZTablica(Grajacy *grajacy, TablicaNaWynik *tablica);
 
 	// Wektor przesunięcia o kombinacje dł./szer. ekranu
 	inline sf::Vector2f pozycjaWzgledemAllSprites(unsigned int nr = 0) {
@@ -146,6 +143,7 @@ private:
 	}
 
 	//***************** DOTYCZY PĘTLI PROGRAMU ****************
+	bool exit;
 	ProgramState *state;
 	int runda;
 

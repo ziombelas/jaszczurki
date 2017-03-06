@@ -56,6 +56,5 @@ Mapa1::Mapa1() {
 }
 
 Mapa1::~Mapa1() {
-	//todo usuniecie wszystkich elementow?
 }
 

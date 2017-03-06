@@ -30,9 +30,6 @@ public:
 		KLAWA, PAD
 	};
 
-	// Przyjaźń z PoleDolacz, aby mógł używać jakPoruszacSprite
-	friend class PoleDolacz;
-
 	Input(jakiInput input, int id, sf::Event & event);
 
 	bool isPressed(ktoryKlawisz);
@@ -43,27 +40,25 @@ public:
 
 	Input  & operator=(const Input  & stary);
 private:
+	//************************ OGÓLNE  *******************
 	jakiInput rodzajInputu;
 	int id;
 
-	/* KLAWIATURA */
-	// Klawisze dołączania do gry
-	// (strzałki bez zmian).
+	//******************* DOTYCZY KLAWIATURY ***************
 	sf::Keyboard::Key KL_akceptuj;
 	sf::Keyboard::Key KL_esc;
-
-	// Klawisze do każdej akcji w grze
 	sf::Keyboard::Key KL_lewo;
 	sf::Keyboard::Key KL_prawo;
 	sf::Keyboard::Key KL_dol;
 	sf::Keyboard::Key KL_skok;
 	sf::Keyboard::Key KL_atak;
 
-	/* PAD */
+	//********************* DOTYCZY PADA ******************
 	// Suma przesunięć gałki lewo/prawo zapisana po to tak
 	// aby przewijać np. w menu przy osiąganiu -650/650
 	float przesuniecieGalki;
 
+	//******************* ELEMENTY GRAFICZNE ****************
 	// Tekstury jak sterować
 	sf::Texture jakPoruszacPad;
 	sf::Texture jakPoruszacKlawa1;
@@ -72,8 +67,10 @@ private:
 	// Sprite pod odpowiedni z powyższych
 	sf::Sprite jakPoruszacSprite;
 
-	sf::Event * event;
+	//************** POTRZEBNE DLA DZIAŁANIA SFML ************
+	sf::Event *event;
 
+	friend class PoleDolacz;
 };
 
 #endif

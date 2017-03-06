@@ -1,7 +1,7 @@
 #include "Imie.h"
 
 Imie::Imie() {
-//	plec = FACET;
+	plec = FACET;
 }
 
 Imie::~Imie() {

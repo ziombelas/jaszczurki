@@ -1,5 +1,5 @@
 /* Punkty zapisane liczbowo jako napis np. "+1" lecący w stronę tablicy
- * gracza który ten punkt zdobył. Jak trafi na tablicę jest kasowany, a score
+ * gracza który ten punkt zdobył. Jak trafi na tablicę jest kasowany, a wynik
  * gracza zwiększa się o przekazaną wartość.
  */
 

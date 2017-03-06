@@ -1,14 +1,13 @@
 /*
- * Instrukcja.h
- *
- *  Created on: 14 lut 2017
- *      Author: maks
+ * Instrukcja do gry, każda linijka zapisana jest w kolejnych elementach
+ * tablicy sf::Text o nazwie linia. Poza tekstem znajdują się ilustracje
+ * do instrukcji.
  */
 
 #ifndef INSTRUKCJA_H_
 #define INSTRUKCJA_H_
 
-#include "Settings.h"
+#include "Ustawienia.h"
 
 class Instrukcja {
 public:
@@ -18,7 +17,7 @@ public:
 	// Uruchomienie pętli głównej wewnątrz Instrukcji
 	void run();
 private:
-	//****************** ELEMENTY INSTRUKCJI ******************
+	//******************* ELEMENTY INSTRUKCJI ******************
 	// Czcionka
 	sf::Font font;
 
@@ -30,7 +29,7 @@ private:
 
 	void wyswietl();
 
-	//*************** DOTYCZY PĘTLI PROGRAMU **************
+	//****************** DOTYCZY PĘTLI PROGRAMU *****************
 	bool exit;
 
 	//**************** POTRZEBNE DLA DZIAŁANIA SFML *************

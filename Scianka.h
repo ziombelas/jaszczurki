@@ -44,7 +44,7 @@ private:
 
 	//******************* DANE DOTYCZĄCE FIZYKI *******************
 	// Predkość ruchu w pix/s
-	double predkosc_na_sek;
+	float predkosc_na_sek;
 
 	friend class Gra;
 

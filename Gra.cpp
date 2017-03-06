@@ -1,8 +1,8 @@
 #include "Gra.h"
 
+using namespace std;
 
-
-Gra::Gra(sf::RenderWindow &window, Settings *ustawienia, ProgramState *state,
+Gra::Gra(sf::RenderWindow &window, Ustawienia *ustawienia, ProgramState *state,
 		int runda) {
 	this->window = &window;
 	this->state = state;
@@ -53,6 +53,8 @@ Gra::Gra(sf::RenderWindow &window, Settings *ustawienia, ProgramState *state,
 			napisRunda.getGlobalBounds().height / 2);
 	napisRunda.setPosition(2300, 240);
 
+	exit = false;
+
 }
 
 Gra::~Gra() {
@@ -82,27 +84,6 @@ Gra::~Gra() {
 }
 
 void Gra::run() {
-
-//	sf::Text tekst[4];
-	exit = false;
-
-//	if (tutorial) {
-//		// Stworzenie obiektow potrzebnych dla tutorialu
-//
-//		const int tutorial_texts = 2;
-//		string str[] = { "By się poruszac ruszaj lewym analogiem.",
-//				"Sterowanie klasyczne." };
-//		for (int i = 0; i < tutorial_texts; i++) {
-//			tekst[i].setFont(font);
-//			tekst[i].setCharacterSize(66);
-//			tekst[i].setColor(sf::Color::Cyan);
-//
-//			tekst[i].setString(str[i]);
-//			tekst[i].setPosition(
-//					1920 / 2 - tekst[i].getGlobalBounds().width / 2, 350);
-//		}
-//	}
-//	short wybrany_tekst = 0;
 
 	startTimer.restart();
 
@@ -157,8 +138,10 @@ void Gra::run() {
 void Gra::update() {
 	// Update ścianek
 	if (etap != ODLICZANIE_DO_STARTU)
-		for (unsigned int i = 0; i < scianka.size(); i++)
+		for (unsigned int i = 0; i < scianka.size(); i++) {
+			cout << "sciana[" << i << "]: " << mineloCzasu << endl;
 			scianka[i]->update(mineloCzasu);
+		}
 
 	// Update graczy
 	for (unsigned int i = 0; i < gracz.size(); i++)
@@ -738,7 +721,7 @@ void Gra::updateMuch(Mucha & mucha) {
 	mucha.update(mineloCzasu);
 }
 
-bool Gra::kol_ogolnie(Obiekt &ob1, int nr, Obiekt & ob2) {
+bool Gra::kol_ogolnie(Obiekt & ob1, int nr, Obiekt & ob2) {
 	// Zwykła kolizja, gdzie prostokąty przedstawiające 2 obiekty
 	// mają niepusty zbiór wspólnych punktów.
 	if (static_cast<int>(ob1.getGlobalBounds(nr).left
@@ -757,7 +740,7 @@ bool Gra::kol_ogolnie(Obiekt &ob1, int nr, Obiekt & ob2) {
 	return false;
 }
 
-bool Gra::kol_calkowita(Obiekt &ob1, int nr, Obiekt & ob2, int nr2) {
+bool Gra::kol_calkowita(Obiekt & ob1, int nr, Obiekt & ob2, int nr2) {
 	// Obszary obu obiektów pokrywają się całkowicie
 	if (static_cast<int>(ob1.getGlobalBounds(nr).left)
 			>= static_cast<int>(ob2.getGlobalBounds(nr2).left)
@@ -852,7 +835,7 @@ bool Gra::kol_os_y(Obiekt & ob1, int nr, Obiekt & ob2) {
 	return false;
 }
 
-void Gra::powiazGraczaZTablica(Grajacy * grajacy, TablicaNaWynik * tablica) {
+void Gra::powiazGraczaZTablica(Grajacy *grajacy, TablicaNaWynik *tablica) {
 	grajacy->tablicaNaWynik = tablica;
 	tablica->pokazywany = grajacy;
 	tablica->wUzyciu = true;

@@ -1,7 +1,8 @@
 /*
- * Program gdzie ma początek utworzenie okna sfml i zarządzanie
+ * Program, tu ma początek utworzenie okna sfml i zarządzanie
  * aktualnym etapem programu w zależności od ProgramState.
- * Program zawiera w sobie również ekran tytułowy i jego obsługę.
+ * Klasa Program zawiera w sobie również menu (ekran tytułowy)
+ * i jego obsługę.
  */
 
 #ifndef PROGRAM_H_
@@ -24,14 +25,11 @@ public:
 	// Urchomienie programu
 	void run();
 private:
-	//***************** ELEMENTY PROGRAMU *****************
-//	bool ifTutorial;
-
 	//**************** DOTYCZY PĘTLI PROGRAMU *************
 	ProgramState state;
-	Settings *ustawienia;
+	Ustawienia *ustawienia;
 
-	//**************** ELEMENTY GRAFICZNE *****************
+	//*************** ELEMENTY GRAFICZNE MENU ****************
 	sf::Font font_title, font_opis;
 
 	sf::Texture tlo_texture;
@@ -39,8 +37,8 @@ private:
 	sf::Sprite tlo_jaszczurki_drugibok;
 
 	//**************** POTRZEBNE DLA DZIAŁANIA SFML *************
+	sf::RenderWindow window;
 	sf::Event event;
-
 
 };
 

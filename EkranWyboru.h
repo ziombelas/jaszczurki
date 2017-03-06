@@ -10,12 +10,12 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Settings.h"
 #include "PoleDolacz.h"
+#include "Ustawienia.h"
 
 class EkranWyboru {
 public:
-	EkranWyboru(sf::RenderWindow & window, Settings *ustawienia,
+	EkranWyboru(sf::RenderWindow & window, Ustawienia *ustawienia,
 			ProgramState & state);
 	~EkranWyboru();
 
@@ -23,7 +23,7 @@ public:
 	void run();
 private:
 	//************** ELEMENTY EKRANU WYBORU **************
-	Settings *ustawienia;
+	Ustawienia *ustawienia;
 
 	Input *input[6];
 	bool zajetoscInputu[6];

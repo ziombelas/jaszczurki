@@ -3,8 +3,8 @@
  * są informacje o sposobie ich sterowania oraz np. punktach.
  */
 
-#ifndef SETTINGS_H_
-#define SETTINGS_H_
+#ifndef USTAWIENIA_H_
+#define USTAWIENIA_H_
 
 #include <string.h>
 #include <vector>
@@ -15,10 +15,10 @@ enum ProgramState {
 	MENU, ROZGRYWKA, EKRAN_WYBORU, INSTRUKCJA, PROGRAM_END
 };
 
-class Settings {
+class Ustawienia {
 public:
-	Settings();
-	~Settings();
+	Ustawienia();
+	~Ustawienia();
 
 private:
 	std::vector<Grajacy*> grajacy;

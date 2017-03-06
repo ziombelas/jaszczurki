@@ -8,8 +8,8 @@
 #include "PodsumowanieWynikow.h"
 
 PodsumowanieWynikow::PodsumowanieWynikow(sf::RenderWindow &window,
-		Settings *ustawienia, ProgramState *state) {
-	// Inicjalizacja ekranu wyboru - dostarczenia adresów okna, ustawień, stanu gry
+		Ustawienia *ustawienia, ProgramState *state) {
+
 	this->window = &window;
 	this->ustawienia = ustawienia;
 	this->state = state;

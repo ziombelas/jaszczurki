@@ -6,13 +6,12 @@
 #ifndef PODSUMOWANIEWYNIKOW_H_
 #define PODSUMOWANIEWYNIKOW_H_
 
-#include "Settings.h"
-
 #include <sstream>
+#include "Ustawienia.h"
 
 class PodsumowanieWynikow {
 public:
-	PodsumowanieWynikow(sf::RenderWindow &window, Settings *ustawienia,
+	PodsumowanieWynikow(sf::RenderWindow &window, Ustawienia *ustawienia,
 			ProgramState *state);
 	~PodsumowanieWynikow();
 
@@ -20,12 +19,11 @@ public:
 	void run();
 private:
 	//************** ELEMENTY EKRANU WYBORU **************
-	Settings *ustawienia;
-
 	void wyswietl();
 
 	//*************** DOTYCZY PĘTLI PROGRAMU **************
 	bool exit;
+	Ustawienia *ustawienia;
 	ProgramState *state;
 
 	//**************** ELEMENTY GRAFICZNE *****************
@@ -43,8 +41,6 @@ private:
 
 	// Ilustracje powyższych tekstur
 	sf::Sprite jaszczurkaUpolowana, muchaUpolowana;
-
-
 
 	// Tytuł
 	sf::Text title;

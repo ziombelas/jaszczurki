@@ -12,7 +12,7 @@
 
 #include "Grajacy.h"
 
-class TablicaNaWynik : public sf::Drawable {
+class TablicaNaWynik: public sf::Drawable {
 public:
 	TablicaNaWynik(int x, int y, sf::Color kolor);
 	~TablicaNaWynik();
@@ -20,7 +20,7 @@ public:
 	// Wyświetlanie tablicy z wynikiem na ekranie
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
-	// Aktualizacja
+	// Aktualizacja procesów związanych z tablicą
 	void update();
 private:
 	//******************* ELEMENTY TABLICY *********************

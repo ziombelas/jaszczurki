@@ -1,26 +1,19 @@
 #include "Program.h"
 
-sf::RenderWindow window;
-
-Program::Program(void) {
-	// Utawienia graficzne
-	sf::ContextSettings settings;
-	settings.antialiasingLevel = 8;
+Program::Program() {
 
 	window.create(sf::VideoMode(1920, 1080), "Jaszczurki",
-			sf::Style::Fullscreen, settings);
+			sf::Style::Fullscreen);
 
-	state = PROGRAM_END;
 	window.setFramerateLimit(60);
 
-	// Czcionki
+	// Czcionki w menu
 	font_title.loadFromFile("data/fonts/PORKYS.ttf");
 	font_opis.loadFromFile("data/fonts/EncodeSansWide-Black.ttf");
 
-//	ifTutorial = false;
-	state = MENU;
-
 	ustawienia = NULL;
+
+	state = MENU;
 }
 
 Program::~Program() {
@@ -45,18 +38,18 @@ void Program::run() {
 			64);
 	opis.setPosition(1920 / 2 - opis.getGlobalBounds().width / 2, 360);
 
-	sf::Text tutorialtext(L"żeby włączyć instrukcję wciśnij T lub Y na padzie.",
+	sf::Text tutorialtext(L"żeby włączyć instrukcję wciśnij T lub Y na padzie (xbox).",
 			font_opis, 48);
 	tutorialtext.setPosition(
 			1920 / 2 - tutorialtext.getGlobalBounds().width / 2, 550);
 
-	// *********************   PETLA GLOWNA   ************************ //
+	// *********************   PĘTLA GŁÓWNA   ************************ //
 	while (state != PROGRAM_END) {
 		switch (state) {
 		case MENU: {
 			while (window.pollEvent(event)) {
 
-				// Wcisnięcie ESC lub zamknięcie okna
+				// Wcisnięcie ESC lub alt + f4
 				if (event.type == sf::Event::Closed
 						|| (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)
 								&& event.type == sf::Event::KeyPressed)) {
@@ -70,7 +63,6 @@ void Program::run() {
 						|| sf::Joystick::isButtonPressed(3, 0)
 						|| (event.type == sf::Event::KeyPressed
 								&& event.key.code == sf::Keyboard::Return)) {
-//					ifTutorial = false;
 					state = EKRAN_WYBORU;
 				}
 
@@ -98,7 +90,7 @@ void Program::run() {
 
 			window.clear();
 
-			// Rysowanie - ekran poczatkowy
+			// Rysowanie - ekran początkowy
 			window.draw(title);
 			window.draw(opis);
 			window.draw(tutorialtext);
@@ -110,12 +102,12 @@ void Program::run() {
 			break;
 		case EKRAN_WYBORU: {
 			// Nowe ustawienia, bedą kasowane po rozgrywce
-			ustawienia = new Settings();
+			ustawienia = new Ustawienia();
 
-			// Sworzenie ekranu wyboru
+			// Stworzenie ekranu wyboru
 			EkranWyboru ekrWyb(window, ustawienia, state);
 
-			// Przenisienie pętli głownej → ekrWyb
+			// Przeniesienie pętli głownej → ekrWyb
 			ekrWyb.run();
 		}
 			break;
@@ -127,10 +119,13 @@ void Program::run() {
 
 			// Po opuszczeniu rozgrywki program wraca do menu
 			state = MENU;
+
+			// Skasowanie ustawień
+			delete ustawienia;
 		}
 			break;
 		case INSTRUKCJA: {
-			// Sworzenie instrukcji
+			// Stworzenie instrukcji
 			Instrukcja instrukcja(window);
 
 			// Przenisienie pętli głownej → instrukcja
